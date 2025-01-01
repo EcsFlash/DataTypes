@@ -18,6 +18,12 @@
     <ClInclude Include="LList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LListWH.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DLList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">

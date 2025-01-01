@@ -30,7 +30,7 @@ class LList {
 	}
 public:
 	LList() {
-		head = nullptr;
+		head = new Node(0);
 	}
 	LList(T arr[], int size, bool reversed) {
 		if (!reversed) {
@@ -50,7 +50,7 @@ public:
 	void extendSorted(T arr[], int size) {
 		int temp;
 		for (int i = 0; i < size; i++) {
-			for (int j = i; j < size-1; j++) {
+			for (int j = i; j < size - 1; j++) {
 				if (arr[i] < arr[j]) {
 					temp = arr[j];
 					arr[j] = arr[i];
@@ -62,16 +62,15 @@ public:
 			addToHead(arr[i]);
 		}
 	}
-	
+
 	void addToHead(T element) {
-		//Node* temp = head;
 		Node* newHead = new Node(element);
-		newHead->next = head;
-		head = newHead;
+		newHead->next = head->next;
+		head->next = newHead;
 	}
 	string toString() const {
 		stringstream result;
-		Node* temp = head;
+		Node* temp = head->next;
 		while (temp != nullptr) {
 			result << temp->data << " ";
 			temp = temp->next;
@@ -85,13 +84,13 @@ public:
 		}
 	}
 	bool isEmpty() {
-		return head == nullptr;
+		return head->next == nullptr;
 	}
 	void deleteFirst() {
 		if (!isEmpty()) {
-			Node* temp = head->next;
-			delete head;
-			head = temp;
+			Node* temp = head->next->next;
+			delete head->next;
+			head->next = temp;
 		}
 	}
 	void deleteAfter(Node* whereTo) {
@@ -113,12 +112,10 @@ public:
 	friend ostream& operator<<(ostream& os, const LList& list) {
 		return os << list.toString();
 	}
-
 	void print() {
-		print(head);
+		print(head->next);
 	}
-
 	T sum() {
-		return sum(head, 0);
+		return sum(head->next, 0);
 	}
 };

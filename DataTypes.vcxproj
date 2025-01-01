@@ -127,7 +127,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DLList.h" />
     <ClInclude Include="LList.h" />
+    <ClInclude Include="LListWH.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
