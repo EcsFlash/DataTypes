@@ -117,7 +117,13 @@ public:
 	void print() {
 		print(head);
 	}
-
+	void println() {
+		Node* temp = head;
+		while (temp) {
+			cout << temp->data << " ";
+			temp = temp->next;
+		}
+	}
 	T sum() {
 		return sum(head, 0);
 	}

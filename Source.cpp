@@ -1,4 +1,6 @@
 #include "LList.h"
+#include "LListWH.h"
+#include "DLList.h"
 struct I {
 	int i;
 };

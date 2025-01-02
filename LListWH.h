@@ -4,7 +4,7 @@ using namespace std;
 
 
 template<typename T>
-class LList {
+class LListWH {
 	struct Node {
 		T data;
 		Node* next;
@@ -29,10 +29,10 @@ class LList {
 		}
 	}
 public:
-	LList() {
+	LListWH() {
 		head = new Node(0);
 	}
-	LList(T arr[], int size, bool reversed) {
+	LListWH(T arr[], int size, bool reversed) {
 		if (!reversed) {
 			for (int i = 0; i < size; i++) {
 				addToHead(arr[i]);
@@ -44,7 +44,7 @@ public:
 			}
 		}
 	}
-	~LList() {
+	~LListWH() {
 		clear();
 	}
 	void extendSorted(T arr[], int size) {
@@ -109,7 +109,7 @@ public:
 			whereTo->next = newElement;
 		}
 	}
-	friend ostream& operator<<(ostream& os, const LList& list) {
+	friend ostream& operator<<(ostream& os, const LListWH& list) {
 		return os << list.toString();
 	}
 	void print() {
