@@ -74,13 +74,7 @@ public:
 		return *this;
 	}
 	~Queue() {
-		cout << this << endl;
-		cout << *this << endl;
-		cout << endl;
 		clear();
-
-
-
 	}
 
 	T peek() {
