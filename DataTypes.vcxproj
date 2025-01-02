@@ -127,12 +127,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BSTree.h" />
     <ClInclude Include="DLList.h" />
+    <ClInclude Include="DLListCircular.h" />
     <ClInclude Include="LList.h" />
     <ClInclude Include="LListWH.h" />
+    <ClInclude Include="QueueArr.h" />
+    <ClInclude Include="StackList.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryTree.h" />
+    <ClCompile Include="BracketBalance.cpp" />
+    <ClCompile Include="Calculate_formula.cpp" />
+    <ClCompile Include="InfixToPostfix.cpp" />
+    <ClCompile Include="QueueList.h" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="StackArr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
