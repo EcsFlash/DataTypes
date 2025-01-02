@@ -29,7 +29,7 @@ public:
 			}
 		}
 		else {
-			for (int i = size; i >= 0; i--) {
+			for (int i = size-1; i >= 0; i--) {
 				addToHead(arr[i]);
 			}
 		}
@@ -52,14 +52,19 @@ public:
 			addToHead(arr[i]);
 		}
 	}
+
 	void addToHead(T element) {
-		Node* newElement = new Node(element);
-		newElement->next = head;
-		head->prev = newElement;
-		if (!tail) {
-			tail = head;
+		if (head!=nullptr)
+		{
+			Node* newElement = new Node(element);
+			newElement->next = head;
+			head->prev = newElement;
+			head = newElement;
 		}
-		head = newElement;
+		else
+		{
+			head = tail = new Node(element);
+		}
 	}
 	void addBefore(Node* whereTo, T element) {
 		if (whereTo) {
@@ -118,6 +123,7 @@ public:
 				node = nullptr;
 			}
 			else if (!node->next && !node->prev) {
+				head = tail = nullptr;
 				delete node;
 				node = nullptr;
 			}
