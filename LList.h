@@ -69,15 +69,7 @@ public:
 		newHead->next = head;
 		head = newHead;
 	}
-	string toString() const {
-		stringstream result;
-		Node* temp = head;
-		while (temp != nullptr) {
-			result << temp->data << " ";
-			temp = temp->next;
-		}
-		return result.str();
-	}
+	
 	void clear() {
 		while (!isEmpty())
 		{
@@ -110,21 +102,24 @@ public:
 			whereTo->next = newElement;
 		}
 	}
-	friend ostream& operator<<(ostream& os, const LList& list) {
-		return os << list.toString();
-	}
 
-	void print() {
+	void print() 
+	{
 		print(head);
 	}
-	void println() {
+
+	void println() 
+	{
 		Node* temp = head;
-		while (temp) {
+		while (temp) 
+		{
 			cout << temp->data << " ";
 			temp = temp->next;
 		}
 	}
-	T sum() {
+
+	T sum() 
+	{
 		return sum(head, 0);
 	}
 };

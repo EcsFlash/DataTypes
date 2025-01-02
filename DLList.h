@@ -37,7 +37,7 @@ public:
 	~DLList() {
 		clear();
 	}
-	void extendSorted(T arr[], int size) {
+	DLList(T arr[], int size) {
 		int temp;
 		for (int i = 0; i < size; i++) {
 			for (int j = i; j < size - 1; j++) {
