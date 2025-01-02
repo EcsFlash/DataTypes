@@ -31,7 +31,7 @@ string InfixToPostfix()
 	string str,newStr;
 	getline(cin, str);
 	StackList<char> stack;
-	for (int i = 0;i < (int)str.length();i++)
+	for (int i = 0;i < (int)str.length();i++ )
 	{
 		if (str[i] != '+' && str[i] != '-' && str[i] != '/' && str[i] != '*' && str[i] != ')' && str[i] != '(')
 			newStr += str[i];
