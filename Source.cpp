@@ -7,9 +7,10 @@ struct I {
 
 I sp[6];
 int main() {
-	int a[5] = { 1,2,3,4,5 };
-	DLList<int> list(a,5,true);
+	int a[5] = { 1,4,5,2,6 };
+	LList<int> list(a,5);
 	//list.addAfter(nullptr, 5);
+	//list.clear();
 	list.print();
 
 }

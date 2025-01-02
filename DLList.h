@@ -38,9 +38,9 @@ public:
 		clear();
 	}
 	DLList(T arr[], int size) {
-		int temp;
+		T temp;
 		for (int i = 0; i < size; i++) {
-			for (int j = i; j < size - 1; j++) {
+			for (int j = 0; j < size - 1; j++) {
 				if (arr[i] < arr[j]) {
 					temp = arr[j];
 					arr[j] = arr[i];
