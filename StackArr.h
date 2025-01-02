@@ -8,16 +8,6 @@ class StackArr
 	int size;
 	int top;
 
-	void print(int node)
-	{
-		if (node>-1)
-		{
-			cout << mass[node] << " ";
-			print(node--);
-		}
-
-	}
-
 public:
 	StackArr(int len = 1)
 	{
@@ -50,13 +40,13 @@ public:
 		{
 			top--;
 		}
-		else top = -1;
 	}
 
 	T peek()
 	{
 		if(!isEmpty())
-			return mass[top];//почему то возвращает 1 если нет элементов
+			return mass[top];
+
 	}
 
 	bool isEmpty()
@@ -66,8 +56,5 @@ public:
 		return false;
 	}
 
-	void print()
-	{
-		print(top);
-	}
+	
 };
