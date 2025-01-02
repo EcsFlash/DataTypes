@@ -68,24 +68,19 @@ public:
 		newHead->next = head->next;
 		head->next = newHead;
 	}
-	string toString() const {
-		stringstream result;
-		Node* temp = head->next;
-		while (temp != nullptr) {
-			result << temp->data << " ";
-			temp = temp->next;
-		}
-		return result.str();
-	}
+
 	void clear() {
 		while (!isEmpty())
 		{
 			deleteFirst();
 		}
 	}
-	bool isEmpty() {
+
+	bool isEmpty() 
+	{
 		return head->next == nullptr;
 	}
+
 	void deleteFirst() {
 		if (!isEmpty()) {
 			Node* temp = head->next->next;
@@ -93,7 +88,9 @@ public:
 			head->next = temp;
 		}
 	}
-	void deleteAfter(Node* whereTo) {
+
+	void deleteAfter(Node* whereTo) 
+	{
 		if (!isEmpty() && whereTo) {
 			Node* temp = whereTo->next;
 			if (temp) {
@@ -102,7 +99,9 @@ public:
 			}
 		}
 	}
-	void addAfter(Node* whereTo, T element) {
+
+	void addAfter(Node* whereTo, T element) 
+	{
 		if (!isEmpty() && whereTo) {
 			Node* newElement = new Node(element);
 			newElement->next = whereTo->next;
@@ -110,10 +109,13 @@ public:
 		}
 	}
 	
-	void print() {
+	void print() 
+	{
 		print(head->next);
 	}
-	T sum() {
+
+	T sum() 
+	{
 		return sum(head->next, 0);
 	}
 };
