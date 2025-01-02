@@ -73,7 +73,8 @@ public:
 
 	T peek()
 	{
-		return top->data;
+		if(!isEmpty())
+			return top->data;
 	}
 
 	bool isEmpty()
