@@ -11,7 +11,7 @@ int main() {
 	list.addToHead(2);
 	list.addToHead(2);
 	list.addToHead(2);
-	list.extendSorted(new int[6] { 2, 6, 3, 8, 9, 1 }, 6);
+	list.addAfter(,10)
 	cout << list << endl;
 
 }

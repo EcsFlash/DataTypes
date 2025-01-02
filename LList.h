@@ -110,9 +110,7 @@ public:
 			whereTo->next = newElement;
 		}
 	}
-	friend ostream& operator<<(ostream& os, const LList& list) {
-		return os << list.toString();
-	}
+	
 
 	void print() {
 		print(head);

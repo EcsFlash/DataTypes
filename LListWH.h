@@ -109,9 +109,7 @@ public:
 			whereTo->next = newElement;
 		}
 	}
-	friend ostream& operator<<(ostream& os, const LListWH& list) {
-		return os << list.toString();
-	}
+	
 	void print() {
 		print(head->next);
 	}
