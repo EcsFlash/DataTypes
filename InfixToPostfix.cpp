@@ -5,7 +5,7 @@
 using namespace std;
 
 
-static bool preor(char s,StackList<char>& stack)//true-вытаскиваем все операторы с большим или равным приоритетом
+inline bool preor(char s,StackList<char>& stack)//true-вытаскиваем все операторы с большим или равным приоритетом
 {
 	if (stack.isEmpty())
 		return false;
@@ -24,7 +24,7 @@ static bool preor(char s,StackList<char>& stack)//true-вытаскиваем все операторы
 	return false;
 }
 
-static string InfixToPostfix()
+inline string InfixToPostfix()
 {
 	//(a+b)*(c+d)
 	setlocale(LC_ALL, "ru");
@@ -52,11 +52,11 @@ static string InfixToPostfix()
 			}
 			else //only arifmetic operators
 			{
-				/*while (!stack.isEmpty() && preor(str[i],stack))
+				while (!stack.isEmpty() && preor(str[i],stack))
 				{
 					newStr += stack.peek();
 					stack.removeElem();
-				}*/
+				}
 				stack.addElem(str[i]);
 			}
 		}
