@@ -18,7 +18,7 @@ public:
 
 	~StackArr()
 	{
-		delete[]mass;
+		delete[] mass;
 	}
 
 	void clear()

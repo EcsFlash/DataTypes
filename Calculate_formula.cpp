@@ -8,8 +8,9 @@ inline int Calculator_formula()//предполагаем, что подается заведома верная стро
 	string str = InfixToPostfix();
 	for (int i = 0;i < (int)str.length();i++)
 	{
-		if (str[i] != '+' && str[i] != '-' && str[i] != '/' && str[i] != '*')
+		if (str[i] != '+' && str[i] != '-' && str[i] != '/' && str[i] != '*') {
 			stack.addElem(str[i] - '0');
+		}
 		else if(!stack.isEmpty())
 		{
 			int sum = stack.peek();

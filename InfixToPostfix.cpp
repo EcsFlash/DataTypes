@@ -27,6 +27,7 @@ inline bool preor(char s,StackList<char>& stack)//true-вытаскиваем все операторы
 inline string InfixToPostfix()
 {
 	//(a+b)*(c+d)
+	
 	setlocale(LC_ALL, "ru");
 	cout << "¬ведите ф-лу:";
 	string str,newStr;
@@ -66,6 +67,5 @@ inline string InfixToPostfix()
 		newStr += stack.peek();
 		stack.removeElem();
 	}
-
 	return newStr;
 }
