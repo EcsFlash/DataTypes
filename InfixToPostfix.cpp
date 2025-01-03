@@ -1,11 +1,11 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include "StackList.h"
-
 using namespace std;
 
 
-bool preor(char s,StackList<char>& stack)//true-вытаскиваем все операторы с большим или равным приоритетом
+static bool preor(char s,StackList<char>& stack)//true-вытаскиваем все операторы с большим или равным приоритетом
 {
 	if (stack.isEmpty())
 		return false;
@@ -24,8 +24,9 @@ bool preor(char s,StackList<char>& stack)//true-вытаскиваем все операторы с боль
 	return false;
 }
 
-string InfixToPostfix()
+static string InfixToPostfix()
 {
+	//(a+b)*(c+d)
 	setlocale(LC_ALL, "ru");
 	cout << "Введите ф-лу:";
 	string str,newStr;
@@ -33,12 +34,13 @@ string InfixToPostfix()
 	StackList<char> stack;
 	for (int i = 0;i < (int)str.length();i++ )
 	{
-		if (str[i] != '+' && str[i] != '-' && str[i] != '/' && str[i] != '*' && str[i] != ')' && str[i] != '(')
+		if (str[i] != '+' && str[i] != '-' && str[i] != '/' && str[i] != '*' && str[i] != ')' && str[i] != '(') //only chars for ex.: a, b, etc
 			newStr += str[i];
 		else
 		{
-			if (str[i] == '(')
+			if (str[i] == '(') {
 				stack.addElem(str[i]);
+			}
 			else if (str[i] == ')')
 			{
 				while (!stack.isEmpty() && stack.peek() != '(')
@@ -48,13 +50,13 @@ string InfixToPostfix()
 				}
 				stack.removeElem();
 			}
-			else
+			else //only arifmetic operators
 			{
-				while (!stack.isEmpty() && preor(str[i],stack))
+				/*while (!stack.isEmpty() && preor(str[i],stack))
 				{
 					newStr += stack.peek();
 					stack.removeElem();
-				}
+				}*/
 				stack.addElem(str[i]);
 			}
 		}
