@@ -80,7 +80,9 @@ public:
 
 	bool isEmpty()
 	{
-		return top == nullptr;
+		if(!isEmpty())
+			return top == nullptr;
+		//throw runtime_error("Stack is empty!");
 	}
 
 	void print()
