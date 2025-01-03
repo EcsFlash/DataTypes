@@ -88,7 +88,7 @@ public:
 		}
 	}
 	void deleteAfter(Node* whereTo) {
-		if (!isEmpty() && whereTo) {
+		if (whereTo) {
 			Node* temp = whereTo->next;
 			if (temp) {
 				whereTo->next = whereTo->next->next;
@@ -97,7 +97,7 @@ public:
 		}
 	}
 	void addAfter(Node* whereTo, T element) {
-		if (!isEmpty() && whereTo) {
+		if (whereTo) {
 			Node* newElement = new Node(element);
 			newElement->next = whereTo->next;
 			whereTo->next = newElement;
