@@ -17,6 +17,7 @@ public:
 
 	~QueueArr(){
 		delete[] que;
+		que = nullptr;
 	}
 	QueueArr(const Queue& other){
 
