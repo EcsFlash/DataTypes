@@ -41,7 +41,10 @@ public:
 		}
 	}
 	T peek(){
-		return *que;
+		if(head>0)
+			return que[head];
+		else
+			throw runtime_error("Queueueueueueueu peek what???? ueueu is empty");
 	}
 	bool isEmpty(){
 		return length == 0;

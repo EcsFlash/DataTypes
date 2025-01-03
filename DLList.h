@@ -24,7 +24,7 @@ public:
 		tail = nullptr;
 	}
 	DLList(T arr[], int size, bool reversed) {
-		if (!reversed) {
+		if (reversed) {
 			for (int i = 0; i < size; i++) {
 				addToHead(arr[i]);
 			}

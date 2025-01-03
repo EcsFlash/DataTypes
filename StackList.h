@@ -74,15 +74,15 @@ public:
 
 	T peek()
 	{
-		if(!isEmpty())
+		if (!isEmpty())
 			return top->data;
+		else
+			throw runtime_error("Stack is empty!");
 	}
 
 	bool isEmpty()
 	{
-		if(!isEmpty())
-			return top == nullptr;
-		//throw runtime_error("Stack is empty!");
+		return top == nullptr;
 	}
 
 	void print()
