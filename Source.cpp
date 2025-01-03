@@ -1,11 +1,6 @@
-#include "LList.h"
-#include "LListWH.h"
-#include "DLList.h"
-#include "StackList.h"
-#include "StackArr.h"
+#pragma once
+#include "InfixToPostfix.cpp"
 
-bool BracketBalance();
-bool InfixToPostfix();
 int main() {
 	
 	cout << InfixToPostfix();
