@@ -37,11 +37,9 @@ public:
 		}
 	}
 	CDLList(T arr[], int size) {
-		cout << "constructor" << endl;
 		head = new Node(0);
 		head->next = head;
 		head->prev = head;
-		cout << "constructor" << endl;
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size - 1; j++) {
 				if (arr[j] < arr[i]) {
@@ -111,7 +109,6 @@ public:
 	}
 	void print(bool reversed = false) {
 		if (!isEmpty()) {
-			cout << "in ptint" << endl;
 			Node* temp = head;
 			if (reversed) {
 				temp = temp->prev;

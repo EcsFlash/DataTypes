@@ -67,7 +67,6 @@ public:
 	}
 	
 	void addToHead(T element) {
-		//Node* temp = head;
 		Node* newHead = new Node(element);
 		newHead->next = head;
 		head = newHead;
