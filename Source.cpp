@@ -10,6 +10,6 @@ int main() {
 	/*LListWH<int> list(new int [5] {1,2,3,4,5},5,false);
 	list.print();*/
 
-	CDLList<int> cdlist(new int[5] {1, 5, 3, 2, 4}, 5);
-	cdlist.print(true);
+	/*CDLList<int> cdlist(new int[5] {1, 5, 3, 2, 4}, 5);
+	cdlist.print(true);*/
 }

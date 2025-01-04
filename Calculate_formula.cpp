@@ -3,23 +3,30 @@
 #include <string>
 using namespace std;
 
-void summa(StackList<char>& stackOperator,StackList<int>& stackOperand)
+void sum(StackList<char>& stackOperator,StackList<int>& stackOperand)
 {
-	int a = stackOperand.peek();
+	int result = stackOperand.peek();
 	stackOperand.removeElem();
-	int b = stackOperand.peek();
-	stackOperand.removeElem();
+	
 
-	char p = stackOperator.peek();
-	stackOperator.removeElem();
-
-	int result = 0;
-	switch (p) {
-	case '+': result = a + b; break;
-	case '-': result = a - b; break;
-	case '*': result = a * b; break;
-	case '/': result = a / b; break;
+	switch (stackOperator.peek())
+	{
+	case '+':
+		result += stackOperand.peek();
+		break;
+	case '-':
+		result -= stackOperand.peek();
+		break;
+	case '*':
+		result *= stackOperand.peek();
+		break;
+	case '/':
+		result /= stackOperand.peek();
+		break;
 	}
+	stackOperator.removeElem();
+	stackOperand.removeElem();
+
 	stackOperand.addElem(result);
 }
 
@@ -30,36 +37,53 @@ inline int Calculator_formula()//предполагаем, что подается заведома верная стро
 	StackList<int> stackOperand;
 	string str;
 	getline(cin, str);
-	str += " ";
 	int s = 0;
 	string x;
 	for (int i = 0;i < (int)str.length()-1;i++)
 	{
-		
-		if (str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/')
-		{
-			if (str[i + 1] == '+' || str[i + 1] == '-' || str[i + 1] == '*' || str[i + 1] == '/' || str[i + 1] == ' ')
-				stackOperand.addElem((int)str[i]);
-			else
-			{
-				x += str[i];
-				if (str[i + 1] == '+' || str[i + 1] == '-' || str[i + 1] == '*' || str[i + 1] == '/' || str[i + 1] == ' ')
-				{
-					stackOperand.addElem((int)x.c_str());
-					x = " ";
-				}
-			}
-		}
+		if (isdigit(str[i]))
+			x += str[i];
+		//else
+		//{
+		//	if (!x.empty())
+		//	{
+		//		stackOperand.addElem(stoi(x));
+		//		x.clear();
+		//	}
+		//}
+		////if (str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/')
+		////{
+		////	if (str[i + 1] == '+' || str[i + 1] == '-' || str[i + 1] == '*' || str[i + 1] == '/' || str[i + 1] == ' ')
+		////	{
+		////		stackOperand.addElem((int)str[i]);
+		////		stackOperand.print();cout << endl;
+		////	}
+		////	else
+		////	{
+		////		if (str[i] != '+' && str[i] != '-' && str[i] != '*' && str[i] != '/') {
+		////			x += str[i];  // Собираем цифры в строку
+		////		}
+		////		else {
+		////			if (!x.empty()) {
+		////				stackOperand.addElem(stoi(x));  // Преобразуем строку в целое число
+		////				x.clear();  // Очищаем строку для следующего числа
+		////			}
+		////		}
 		else
 		{
-			if (str[i] == '(' || str[i])
+			if (!x.empty())
+			{
+				stackOperand.addElem(stoi(x));
+				x.clear();
+			}
+			if (str[i] == '(')
 				stackOperator.addElem(str[i]);
 			else if (str[i] == ')')
 			{
 				while (!stackOperator.isEmpty() && stackOperator.peek() != '(')
 				{
 
-					summa(stackOperator, stackOperand);
+					sum(stackOperator, stackOperand);
 					///*newStr += stack.peek();
 					//stackOperator.removeElem();*/
 					//int sum = stackOperand.peek();
@@ -93,7 +117,7 @@ inline int Calculator_formula()//предполагаем, что подается заведома верная стро
 				{
 					/*newStr += stack.peek();
 					stack.removeElem();*/
-					summa(stackOperator, stackOperand);
+					sum(stackOperator, stackOperand);
 				}
 				stackOperator.addElem(str[i]);
 			}
@@ -130,7 +154,7 @@ inline int Calculator_formula()//предполагаем, что подается заведома верная стро
 	}
 	while (!stackOperator.isEmpty())
 	{
-		summa(stackOperator, stackOperand);
+		sum(stackOperator, stackOperand);
 	}
 	return stackOperand.peek();
 }
