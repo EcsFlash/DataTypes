@@ -132,6 +132,7 @@
     <ClInclude Include="DLListCircular.h" />
     <ClInclude Include="HashArr.h" />
     <ClInclude Include="HashList.h" />
+    <ClInclude Include="Item_for_hash.h" />
     <ClInclude Include="LList.h" />
     <ClInclude Include="LListWH.h" />
     <ClInclude Include="QueueArr.h" />
