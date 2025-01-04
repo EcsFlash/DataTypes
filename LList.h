@@ -34,6 +34,7 @@ public:
 		head = nullptr;
 	}
 	LList(T arr[], int size, bool reversed) {
+		head = nullptr;
 		if (reversed) {
 			for (int i = 0; i < size; i++) {
 				addToHead(arr[i]);
@@ -49,6 +50,7 @@ public:
 		clear();
 	}
 	LList(T arr[], int size) {
+		head = nullptr;
 		T temp;
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size-1; j++) {
@@ -65,7 +67,6 @@ public:
 	}
 	
 	void addToHead(T element) {
-		//Node* temp = head;
 		Node* newHead = new Node(element);
 		newHead->next = head;
 		head = newHead;

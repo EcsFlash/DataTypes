@@ -36,6 +36,15 @@
     <ClInclude Include="BSTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HashArr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HashList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Item_for_hash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">

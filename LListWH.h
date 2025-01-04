@@ -111,6 +111,13 @@ public:
 			whereTo->next = newElement;
 		}
 	}
+	void println() {
+		Node* temp = head->next;
+		while (temp) {
+			cout << temp->data << " ";
+			temp = temp->next;
+		}
+	}
 	
 	void print() 
 	{
