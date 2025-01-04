@@ -74,10 +74,7 @@ public:
 
 	T peek()
 	{
-		if (!isEmpty())
-			return top->data;
-		else
-			throw runtime_error("Stack is empty!");
+		return top->data;
 	}
 
 	bool isEmpty()
