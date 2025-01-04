@@ -9,18 +9,10 @@ inline bool preor(char s,StackList<char>& stack)//true-вытаскиваем все операторы
 {
 	if (stack.isEmpty())
 		return false;
-	else if (s == '*' || s == '/')
-	{
-		if (stack.peek() == '*' || stack.peek() == '/')
-			return true;
-		else return false;
-	}
-	else if (s == '+' || s == '-')
-	{
-		if (stack.peek() == '(')
-			return false;
-		else return true;
-	}
+	if ((s == '*' || s == '/') && (stack.peek() == '*' || stack.peek() == '/'))
+		return true;
+	if ((s == '+' || s == '-') && (stack.peek() == '+' || stack.peek() == '-' || stack.peek() == '*' || stack.peek() == '/'))
+		return true;
 	return false;
 }
 
