@@ -34,6 +34,7 @@ public:
 		head = new Node(0);
 	}
 	LListWH(T arr[], int size, bool reversed) {
+		head = new Node(0);
 		if (reversed) {
 			for (int i = 0; i < size; i++) {
 				addToHead(arr[i]);
@@ -49,6 +50,7 @@ public:
 		clear();
 	}
 	LListWH(T arr[], int size) {
+		head = new Node(0);
 		T temp;
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size - 1; j++) {
