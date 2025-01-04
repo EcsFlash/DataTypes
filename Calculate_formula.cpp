@@ -1,89 +1,40 @@
 #include "InfixToPostfix.cpp"
 #include "StackList.h"
-#include <string>
 using namespace std;
 
-void summa(StackList<char>& stackOperator,StackList<int>& stackOperand)
+inline int Calculator_formula()
 {
-	int result = stackOperand.peek();
-	stackOperand.removeElem();
-	
-
-	switch (stackOperator.peek())
+	StackList<int> stack;
+	string str = InfixToPostfix();
+	for (int i = 0; i < (int)str.length(); i++)
 	{
-	case '+':
-		result += stackOperand.peek();
-		break;
-	case '-':
-		result -= stackOperand.peek();
-		break;
-	case '*':
-		result *= stackOperand.peek();
-		break;
-	case '/':
-		result /= stackOperand.peek();
-		break;
-	}
-	stackOperator.removeElem();
-	stackOperand.removeElem();
-
-	stackOperand.addElem(result);
-}
-
-inline int Calculator_formula()//предполагаем, что подается заведома верная строка(иначе можно писать до посинения)
-{
-	StackList<char> stackOperator;
-	StackList<int> stackOperand;
-	string str;
-	getline(cin, str);
-	int s = 0;
-	string x;
-	for (int i = 0;i < (int)str.length();i++)
-	{
-		if (isdigit(str[i]))
-			x += str[i];
-		else
+		if (str[i] != '+' && str[i] != '-' && str[i] != '/' && str[i] != '*')
+			stack.addElem(str[i] - '0');
+		else if (!stack.isEmpty())
 		{
-			if (!x.empty())
+			int sum = stack.peek();
+			stack.removeElem();
+			switch (str[i])
 			{
-				stackOperand.addElem(stoi(x));
-				x.clear();
+			case('+'):
+				sum += stack.peek();
+				stack.removeElem();
+				break;
+			case('-'):
+				sum -= stack.peek();
+				stack.removeElem();
+				break;
+			case('*'):
+				sum *= stack.peek();
+				stack.removeElem();
+				break;
+			case('/'):
+				sum /= stack.peek();
+				stack.removeElem();
+				break;
 			}
-			if (str[i] == '(')
-				stackOperator.addElem(str[i]);
-			else if (str[i] == ')')
-			{
-				//while (!stackOperator.isEmpty() && stackOperator.peek() != '(')
-				while (stackOperator.peek() != '(')
-				{
-
-					summa(stackOperator, stackOperand);
-				}
-				stackOperator.removeElem();
-			}
-			else 
-			{
-				if (!stackOperator.isEmpty())
-				{
-					while (!stackOperator.isEmpty() && preor(str[i], stackOperator))
-					{
-						/*newStr += stack.peek();
-						stack.removeElem();*/
-						summa(stackOperator, stackOperand);
-					}
-					stackOperator.addElem(str[i]);
-				}
-				
-			}
+			stack.addElem(sum);
 		}
 	}
-	if (!x.empty()) 
-	{
-		stackOperand.addElem(stoi(x));
-	}
-	while (!stackOperator.isEmpty())
-	{
-		summa(stackOperator, stackOperand);
-	}
-	return stackOperand.peek();
+	return stack.peek();
 }
