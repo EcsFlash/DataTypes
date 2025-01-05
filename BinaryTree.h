@@ -23,23 +23,23 @@ struct BinaryTree
 };
 
 
-void initTree(BinaryTree*& root)
+inline void initTree(BinaryTree*& root)
 {
 	root = nullptr;
 }
 
-//template <typename T>
-//void initTree(BinaryTree<T>*& root,T elem)
+
+//inline void initTree(BinaryTree*& root,int elem)
 //{
 //	//root = new BinaryTree(elem);
-//	root = new BinaryTree<T>;
-//	root->data = elem;
+//	root = new BinaryTree(elem);
+//	//root->data = elem;
 //	root->left = nullptr;
 //	root->right = nullptr;
 //}
-//
 
-void initTree(int elem,BinaryTree*& root,BinaryTree* rootLeft,BinaryTree* rootRight)
+
+inline void initTree(int elem,BinaryTree*& root,BinaryTree* rootLeft,BinaryTree* rootRight)
 {
 	root = new BinaryTree(elem);
 	root->left = rootLeft;
@@ -47,20 +47,20 @@ void initTree(int elem,BinaryTree*& root,BinaryTree* rootLeft,BinaryTree* rootRi
 }
 
 
-bool isEmpty(BinaryTree* root)
+inline bool isEmpty(BinaryTree* root)
 {
 	return root == nullptr;
 }
 
 
-int getRootdata(BinaryTree* root)
+inline int getRootdata(BinaryTree* root)
 {
 	if (!isEmpty(root))
 		return root->data;
 }
 
 
-void setRootdata(BinaryTree* root, int elem)
+inline void setRootdata(BinaryTree* root, int elem)
 {
 	if (!isEmpty(root))
 	{
@@ -69,7 +69,7 @@ void setRootdata(BinaryTree* root, int elem)
 }
 
 
-void clear(BinaryTree*& root)
+inline void clear(BinaryTree*& root)
 {
 	if (!isEmpty(root))
 	{
@@ -80,21 +80,22 @@ void clear(BinaryTree*& root)
 	}
 }
 
-bool attachLeftSon(BinaryTree* root, int elem) {
+inline bool attachLeftSon(BinaryTree* root, int elem) {
 	if (!isEmpty(root)) 
 	{
 		if (isEmpty(root->left)) 
 		{
 			root->left = new BinaryTree(elem);
-			root->left->left = nullptr;
-			root->left->right = nullptr;
+			//root->left->left = nullptr;
+			//root->left->right = nullptr;
 			return true;
 		}
 		else return false;
 	}
 	return false;
 }
-bool attachLeftTree(BinaryTree* root, BinaryTree* leftSubTree) 
+
+inline bool attachLeftTree(BinaryTree* root, BinaryTree* leftSubTree) 
 {
 	if (!isEmpty(root)) 
 	{
@@ -107,15 +108,16 @@ bool attachLeftTree(BinaryTree* root, BinaryTree* leftSubTree)
 	}
 	return false;
 }
-bool attachRightSon(BinaryTree* root, int elem)
+
+inline bool attachRightSon(BinaryTree* root, int elem)
 {
 	if (!isEmpty(root))
 	{
 		if (isEmpty(root->right)) 
 		{
 			root->left = new BinaryTree(elem);
-			root->left->left = nullptr;
-			root->left->right = nullptr;
+			//root->left->left = nullptr;
+			//root->left->right = nullptr;
 			return true;
 		}
 		else return false;
@@ -123,7 +125,7 @@ bool attachRightSon(BinaryTree* root, int elem)
 	return false;
 }
 
-bool attachRightTree(BinaryTree* root, BinaryTree* rightSubTree) 
+inline bool attachRightTree(BinaryTree* root, BinaryTree* rightSubTree) 
 {
 	if (!isEmpty(root)) 
 	{
@@ -137,7 +139,7 @@ bool attachRightTree(BinaryTree* root, BinaryTree* rightSubTree)
 	return false;
 }
 
-BinaryTree* copyTree(BinaryTree* root) {
+inline BinaryTree* copyTree(BinaryTree* root) {
 	if (!isEmpty(root)) {
 		BinaryTree* newRoot = new BinaryTree(root->data);
 		newRoot->left = copyTree(root->left);
@@ -149,21 +151,21 @@ BinaryTree* copyTree(BinaryTree* root) {
 	}
 }
 
-BinaryTree*& detachLeftSubTree(BinaryTree* root)
+inline BinaryTree*& detachLeftSubTree(BinaryTree* root)
 {
 	BinaryTree* leftSubTree = root->left;
 	root->left = nullptr;
 	return leftSubTree;
 }
 
-BinaryTree*& detachRightSubTree(BinaryTree* root)
+inline BinaryTree*& detachRightSubTree(BinaryTree* root)
 {
 	BinaryTree *rightSubTree = root->right;
 	root->right = nullptr;
 	return rightSubTree;
 }
 
-BinaryTree*& copyLeftSubTree(BinaryTree* root) 
+inline BinaryTree*& copyLeftSubTree(BinaryTree* root) 
 {
 	if (!isEmpty(root)) 
 	{
@@ -171,7 +173,8 @@ BinaryTree*& copyLeftSubTree(BinaryTree* root)
 		return leftSubTree;
 	}
 }
-BinaryTree*& copyRightSubTree(BinaryTree* root) {
+
+inline BinaryTree*& copyRightSubTree(BinaryTree* root) {
 	if (!isEmpty(root))
 	{
 		BinaryTree *rightSubTree = copyTree(root->left);
@@ -181,9 +184,11 @@ BinaryTree*& copyRightSubTree(BinaryTree* root) {
 
 
 
-void print(BinaryTree* root)
+inline void print(BinaryTree* root)
 {
 	cout << root->data << " ";
-	print(root->left);
-	print(root->right);
+	if(!isEmpty(root->left))
+		print(root->left);
+	if(!isEmpty(root->right))
+		print(root->right);
 }
