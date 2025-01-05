@@ -40,7 +40,7 @@ class HashTable2 {
 			}
 			table[hash_i].set(elem);
 		}
-	};
+	}
 
 	void resize() {
 		Cell* tmp = new Cell[size * 2];
@@ -53,10 +53,10 @@ class HashTable2 {
 		}
 		delete[] table;
 		table = tmp;
-	};
+	}
 	int hash(int i, long long h) {
 		return (h + i * c) % size;
-	};
+	}
 public:
 	HashTable2(int _size, int _c) {
 		if (c <= 0) {
@@ -66,13 +66,13 @@ public:
 		size = _size;
 		c = _c;
 		amount = 0;
-	};
+	}
 	HashTable2(const HashTable2& other) : size(other.size), c(other.c), amount(other.amount) {
 		table = new Cell[size];
 		for (int i = 0; i < size; ++i) {
 			table[i] = other.table[i];
 		}
-	};
+	}
 	HashTable2& operator=(const HashTable2& other) {
 		if (this != &other) {
 			delete[] table;
@@ -85,24 +85,24 @@ public:
 			}
 		}
 		return *this;
-	};
+	}
 	~HashTable2() {
 		delete[] table;
-	};
+	}
 	void insert(const T& elem) {
 		if (amount * 3 > size * 2) {
 			resize();
 		}
 		insertToTable(table, elem);
 		amount++;
-	};
+	}
 	void remove(const T& elem) {
 		int index = indexOf(elem);
 		if (index != -1) {
 			table[index].clear();
 			amount--;
 		}
-	};
+	}
 	int indexOf(const T& elem) {
 		long long true_hash = elem.hash();
 		long long hash = true_hash % size;
@@ -117,8 +117,8 @@ public:
 			i++;
 			hash_i = hash(i, hash_i);
 		}
-		throw runtime_error("element not found")
-	};
+		throw runtime_error("element not found");
+	}
 	bool search(const T& elem) {
 		if (indexOF(elem) != -1)
 		{
@@ -130,5 +130,5 @@ public:
 		for (int i = 0; i < size; i++) {
 			cout << table[i].object << endl;
 		}
-	};
+	}
 };

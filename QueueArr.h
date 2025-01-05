@@ -3,7 +3,7 @@
 template<typename T>
 class QueueArr {
 	T* que;
-	int size = ; // размер массива
+	int size; // размер массива
 	int length; //длина очереди
 	int head;
 	int tail;
