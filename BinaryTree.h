@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include "QueueList.h"
+#include "StackList.h"
 
 using namespace std;
 
@@ -194,5 +196,55 @@ inline void printOb(BinaryTree* root)
 		if (!isEmpty(root->right))
 			printS(root->right);
 		cout << root->data << " ";
+	}
+}
+
+inline void printWidth(BinaryTree* root)
+{
+	if (!isEmpty(root))
+	{
+		Queue<BinaryTree*> q;
+		q.enque(root);
+		while (!q.isEmpty())
+		{
+			BinaryTree* cur = q.peek();
+			q.deque();
+			cout << cur->data<<" ";
+			if (!isEmpty(cur->left))
+				q.enque(cur->left);
+			if (!isEmpty(cur->right))
+				q.enque(cur->right);
+		}
+	}
+}
+
+inline void printDepth(BinaryTree* root)
+{
+	StackList<BinaryTree*> stack;
+	stack.addElem(root);
+	bool done = false;
+	BinaryTree* cur = root;
+	while (!done)
+	{
+		if (!isEmpty(cur->left))
+		{
+			stack.addElem(cur->left);
+			cur = cur->left;
+		}
+		
+		else if (!stack.isEmpty())
+		{
+			cout << stack.peek()->data << " ";
+			cur = stack.peek();
+			cur->left = nullptr;
+			stack.removeElem();
+			
+			if (!isEmpty(cur->right))
+			{
+				stack.addElem(cur->right);
+				cur = cur->right;
+			}
+		}
+		else done = true;
 	}
 }
