@@ -1,10 +1,9 @@
 #pragma once
 
-template <typename T>
 
 struct BinaryTree
 {
-	T data;
+	int  data;
 	BinaryTree* left, * right;
 
 	BinaryTree(T elem)
@@ -21,8 +20,8 @@ struct BinaryTree
 	}
 };
 
-template <typename T>
-void initTree(BinaryTree<T>*& root)
+
+void initTree(BinaryTree*& root)
 {
 	root = nullptr;
 }
@@ -46,22 +45,21 @@ void initTree(BinaryTree<T>*& root)
 //	root->right = rootRight;
 //}
 
-template <typename T>
-bool isEmpty(BinaryTree<T>* root)
+
+bool isEmpty(BinaryTree* root)
 {
 	return root == nullptr;
 }
 
-template <typename T>
-T getRootdata(BinaryTree<T>* root)
+
+int getRootdata(BinaryTree* root)
 {
 	if (!isEmpty(root))
 		return root->data;
 }
 
 
-template <typename T>
-void setRottdata(BinaryTree<T>* root, T elem)
+void setRottdata(BinaryTree* root, T elem)
 {
 	if (!isEmpty(root))
 	{
@@ -70,8 +68,7 @@ void setRottdata(BinaryTree<T>* root, T elem)
 }
 
 
-template <typename T>
-void clear(BinaryTree<T>*& root)
+void clear(BinaryTree*& root)
 {
 	if (!isEmpty(root))
 	{
