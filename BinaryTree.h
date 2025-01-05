@@ -61,7 +61,7 @@ T getRootdata(BinaryTree<T>* root)
 
 
 template <typename T>
-void setRottdata(BinaryTree<T>* root, T elem)
+void setRootData(BinaryTree<T>* root, T elem)
 {
 	if (!isEmpty(root))
 	{
