@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include "QueueList.h"
+#include "StackList.h"
 
 using namespace std;
 
@@ -162,9 +164,87 @@ inline BinaryTree*& copyRightSubTree(BinaryTree* root) {
 
 inline void print(BinaryTree* root)
 {
-	cout << root->data << " ";
-	if(!isEmpty(root->left))
-		print(root->left);
-	if(!isEmpty(root->right))
-		print(root->right);
+	if (!isEmpty(root))
+	{
+		cout << root->data << " ";
+		if (!isEmpty(root->left))
+			print(root->left);
+		if (!isEmpty(root->right))
+			print(root->right);
+	}
+	
+}
+
+inline void printS(BinaryTree* root)
+{
+	if (!isEmpty(root))
+	{
+		if (!isEmpty(root->left))
+			printS(root->left);
+		cout << root->data << " ";
+		if (!isEmpty(root->right))
+			printS(root->right);
+	}
+}
+
+inline void printOb(BinaryTree* root)
+{
+	if (!isEmpty(root))
+	{
+		if (!isEmpty(root->left))
+			printOb(root->left);
+		if (!isEmpty(root->right))
+			printS(root->right);
+		cout << root->data << " ";
+	}
+}
+
+inline void printWidth(BinaryTree* root)
+{
+	if (!isEmpty(root))
+	{
+		Queue<BinaryTree*> q;
+		q.enque(root);
+		while (!q.isEmpty())
+		{
+			BinaryTree* cur = q.peek();
+			q.deque();
+			cout << cur->data<<" ";
+			if (!isEmpty(cur->left))
+				q.enque(cur->left);
+			if (!isEmpty(cur->right))
+				q.enque(cur->right);
+		}
+	}
+}
+
+inline void printDepth(BinaryTree* root)
+{
+	StackList<BinaryTree*> stack;
+	stack.addElem(root);
+	bool done = false;
+	BinaryTree* cur = root;
+	while (!done)
+	{
+		if (!isEmpty(cur->left))
+		{
+			stack.addElem(cur->left);
+			cur = cur->left;
+		}
+		
+		else if (!stack.isEmpty())
+		{
+			cout << stack.peek()->data << " ";
+			cur = stack.peek();
+			cur->left = nullptr;
+			stack.removeElem();
+			
+			if (!isEmpty(cur->right))
+			{
+				stack.addElem(cur->right);
+				cur = cur->right;
+			}
+		}
+		else done = true;
+	}
 }

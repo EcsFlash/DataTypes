@@ -2,7 +2,7 @@
 #include "InfixToPostfix.cpp"
 #include "Calculate_formula.cpp"
 #include "HashArr.h"
-#include "Item_for_hash.h"//
+#include "Item_for_hash.h"
 #include "BinaryTree.h"
 #include "HashList.h"
 int main() {
@@ -17,30 +17,23 @@ int main() {
 	//hashT.print();
 	//cout << Calculator_formula();
 
-	//BinaryTree* left =new BinaryTree(4);
-	//BinaryTree* right = new BinaryTree(5);
-	//BinaryTree* root = nullptr;
+	BinaryTree* left =new BinaryTree(4);
+	BinaryTree* right = new BinaryTree(5);
+	BinaryTree* root = nullptr;
 	//BinaryTree* root1 = nullptr;
-	//BinaryTree* ttree = new BinaryTree(17);
-	//attachLeftSon(ttree, 18);
-	//initTree(3, root, left, right);
-	////initTree(root,3);
-	////cout << getRootdata(root)<<endl;
-	////setRootdata(root, 10);
-	//*attachLeftSon(root, 100);
-	//attachRightSon(right, -10);*/
+	//	BinaryTree* ttree = new BinaryTree(17);
+	//attachLeftSon(ttree, 17);
+	attachLeftSon(left, 18);
+	initTree(3, root, left, right);
+	//initTree(root,3);
+	//cout << getRootdata(root)<<endl;
+	//setRootdata(root, 10);
+	/*attachLeftSon(root, 100);
+	attachRightSon(right, -10);*/
 	//attachLeftTree(right, ttree);
 	//attachRightTree(left, ttree);
 	//root1 = copyRightSubTree(root);
-	//print(root1);
-	//
-	HashTableWithList<Item> hash2(100);
-	for (int i = 0; i < 70; i++) {
-		hash2.insert(Item(i, "pukpuk"));
-	}
-	/*for (int i = 0; i < 70; i++) {
-		hash2.insert(Item(i, "pukpuk"));
-	}*/
-	hash2.print();
-	//
+	//print(root);
+	//cout << root->data;
+	printDepth(root);
 }
