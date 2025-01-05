@@ -30,5 +30,5 @@ int main() {
 	attachLeftTree(right, ttree);
 	attachRightTree(left, ttree);
 	root1 = copyRightSubTree(root);
-	print(root1);
+	printOb(root);
 }

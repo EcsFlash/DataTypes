@@ -162,9 +162,37 @@ inline BinaryTree*& copyRightSubTree(BinaryTree* root) {
 
 inline void print(BinaryTree* root)
 {
-	cout << root->data << " ";
-	if(!isEmpty(root->left))
-		print(root->left);
-	if(!isEmpty(root->right))
-		print(root->right);
+	if (!isEmpty(root))
+	{
+		cout << root->data << " ";
+		if (!isEmpty(root->left))
+			print(root->left);
+		if (!isEmpty(root->right))
+			print(root->right);
+	}
+	
+}
+
+inline void printS(BinaryTree* root)
+{
+	if (!isEmpty(root))
+	{
+		if (!isEmpty(root->left))
+			printS(root->left);
+		cout << root->data << " ";
+		if (!isEmpty(root->right))
+			printS(root->right);
+	}
+}
+
+inline void printOb(BinaryTree* root)
+{
+	if (!isEmpty(root))
+	{
+		if (!isEmpty(root->left))
+			printOb(root->left);
+		if (!isEmpty(root->right))
+			printS(root->right);
+		cout << root->data << " ";
+	}
 }
