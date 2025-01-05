@@ -23,21 +23,28 @@ public:
 
 	}
 	void enque(T elem){
-		tail++;
-		tail = tail % size;
-		que[tail] = elem;
-		length++;
+		if (length < size) {
+			tail++;
+			tail = tail % size;
+			que[tail] = elem;
+			length++;
+		}
 	}
 	void deque(){
-		if (length > 1) {
+		/*if (length > 1) {
 			head++;
-			head% = size;
+			head %= size;
 			length--;
 		}
 		else if (length == 1) {
 			head = 0;
 			tail = -1;
 			length = 0;
+		}*/
+		if (!isEmpty()) {
+			head++;
+			head %= size;
+			length--;
 		}
 	}
 	T peek(){
