@@ -57,9 +57,11 @@ class HashTable2 {
 	int hash(int i, long long h) {
 		return (h + i * c) % size;
 	}
+
+	
 public:
 	HashTable2(int _size, int _c) {
-		if (c <= 0) {
+		if (_c <= 0) {
 			throw invalid_argument("c parameter must be greather than 0");
 		}
 		table = new Cell[_size];
@@ -67,7 +69,7 @@ public:
 		c = _c;
 		amount = 0;
 	}
-	HashTable2(const HashTable2& other) : size(other.size), c(other.c), amount(other.amount) {
+	/*HashTable2(const HashTable2& other) : size(other.size), c(other.c), amount(other.amount) {
 		table = new Cell[size];
 		for (int i = 0; i < size; ++i) {
 			table[i] = other.table[i];
@@ -85,7 +87,7 @@ public:
 			}
 		}
 		return *this;
-	}
+	}*/
 	~HashTable2() {
 		delete[] table;
 	}
