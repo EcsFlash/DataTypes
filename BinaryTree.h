@@ -13,13 +13,6 @@ struct BinaryTree
 		data = elem;
 		left = right = nullptr;
 	}
-
-	/*BinaryTree(T elem, BinaryTree* leftTree, BinaryTree* rightTree)
-	{
-		data = elem;
-		left = leftTree;
-		right = rightTree;
-	}*/
 };
 
 
@@ -27,17 +20,6 @@ inline void initTree(BinaryTree*& root)
 {
 	root = nullptr;
 }
-
-
-//inline void initTree(BinaryTree*& root,int elem)
-//{
-//	//root = new BinaryTree(elem);
-//	root = new BinaryTree(elem);
-//	//root->data = elem;
-//	root->left = nullptr;
-//	root->right = nullptr;
-//}
-
 
 inline void initTree(int elem,BinaryTree*& root,BinaryTree* rootLeft,BinaryTree* rootRight)
 {
@@ -86,8 +68,6 @@ inline bool attachLeftSon(BinaryTree* root, int elem) {
 		if (isEmpty(root->left)) 
 		{
 			root->left = new BinaryTree(elem);
-			//root->left->left = nullptr;
-			//root->left->right = nullptr;
 			return true;
 		}
 		else return false;
@@ -116,8 +96,6 @@ inline bool attachRightSon(BinaryTree* root, int elem)
 		if (isEmpty(root->right)) 
 		{
 			root->left = new BinaryTree(elem);
-			//root->left->left = nullptr;
-			//root->left->right = nullptr;
 			return true;
 		}
 		else return false;
@@ -181,8 +159,6 @@ inline BinaryTree*& copyRightSubTree(BinaryTree* root) {
 		return rightSubTree;
 	}
 }
-
-
 
 inline void print(BinaryTree* root)
 {
