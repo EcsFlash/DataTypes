@@ -87,7 +87,7 @@ public:
 
 
 	bool isEmpty() {
-		return head == nullptr && tail == nullptr;
+		return head == nullptr;
 	}
 
 

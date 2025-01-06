@@ -97,7 +97,7 @@ inline bool attachRightSon(BinaryTree* root, int elem)
 	{
 		if (isEmpty(root->right)) 
 		{
-			root->left = new BinaryTree(elem);
+			root->right = new BinaryTree(elem);
 			return true;
 		}
 		else return false;
@@ -157,7 +157,7 @@ inline BinaryTree*& copyLeftSubTree(BinaryTree* root)
 inline BinaryTree*& copyRightSubTree(BinaryTree* root) {
 	if (!isEmpty(root))
 	{
-		BinaryTree *rightSubTree = copyTree(root->left);
+		BinaryTree *rightSubTree = copyTree(root->right);
 		return rightSubTree;
 	}
 }
