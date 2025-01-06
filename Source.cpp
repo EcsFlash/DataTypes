@@ -36,7 +36,7 @@ int main() {
 	//attachRightTree(left, ttree);
 	//root1 = copyRightSubTree(root);
 	//print(root);
-	//cout << root->data;
+	//cout << root->data;.
 	//printWidth(root);
 	BSTree<int> tree;
 	tree.insert(1);
