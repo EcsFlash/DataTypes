@@ -33,5 +33,5 @@ int main() {
 	//root1 = copyRightSubTree(root);
 	//print(root);
 	//cout << root->data;
-	printDepth(root);
+	printWidth(root);
 }

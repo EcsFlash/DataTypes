@@ -48,6 +48,8 @@ public:
 	}
 	~LListWH() {
 		clear();
+		delete head;
+		head = nullptr;
 	}
 	LListWH(T arr[], int size) {
 		head = new Node(0);
