@@ -84,33 +84,38 @@ class BSTree {
 		}
 	}
 	void remove(Node*& node, T element) {
-		if (element < node->data) {
-			remove(node->left, element);
+		if (node) {
+			if (element < node->data) {
+				remove(node->left, element);
+			}
+			else if (element > node->data) {
+				remove(node->right, element);
+			}
+			else if (element == node->data) {
+				if (node->left && node->right) {
+					T succ = successor(node->left);
+					node->data = succ;
+				}
+				else if (!node->left && node->right) {
+					Node* temp = node;
+					node = node->right;
+					delete temp;
+					temp = nullptr;
+				}
+				else if (node->left && !node->right) {
+					Node* temp = node;
+					node = node->left;
+					delete temp;
+					temp = nullptr;
+				}
+				else if (!node->left && !node->right) {
+					delete node;
+					node = nullptr;
+				}
+			}
 		}
-		else if (element > node->data) {
-			remove(node->right, element);
-		}
-		else if (element == node->data) {
-			if (node->left && node->right) {
-				T succ = successor(node->left);
-				node->data = succ;
-			}
-			else if (!node->left && node->right) {
-				Node* temp = node;
-				node = node->right;
-				delete temp;
-				temp = nullptr;
-			}
-			else if (node->left && !node->right) {
-				Node* temp = node;
-				node = node->left;
-				delete temp;
-				temp = nullptr;
-			}
-			else if (!node->left && !node->right) {
-				delete node;
-				node = nullptr;
-			}
+		else {
+			throw invalid_argument("failed to remove")
 		}
 
 	}
