@@ -6,6 +6,7 @@
 #include "BinaryTree.h"
 #include "HashList.h"
 int main() {
+	//ZOVZOVZOV
 	//
 	/*HashTable2<Item> hashT(100, 2);
 	for (int i = 0; i < 30; i++) {
