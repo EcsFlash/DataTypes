@@ -58,10 +58,10 @@ class HashTable2 {
 	int hash(int i, long long h) {
 		return (h + i * c) % size;
 	}
-	int hash_power2(int i, long long) {
+	int hash_power2(int i, long long h) {
 		return (h + i * c + i * i * d) % size;
 	}
-	int hash_power2_other(int i, long long) {
+	int hash_power2_other(int i, long long h) {
 		return (h + (i*i*c*c)) % size;
 	}
 

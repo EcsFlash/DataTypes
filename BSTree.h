@@ -45,41 +45,81 @@ class BSTree {
 		}
 	}
 
-	T successor(Node* node) {
-		node = node->left;
-		while (node->left || node->right)
-		{
-			node = node->right;
+	T successor(Node*& node) {
+		if (node->right) {
+			return successor(node->right);
 		}
-		T result = node->data;
-		delete node;
-		node = nullptr;
-		return result;
+		else {
+			T result = node->data;
+			Node* temp = node;
+			node = node->left;
+			delete temp;
+			temp = nullptr;
+			return result;
+		}
 	}
 
 	void prefixTraverse(Node* node) {
-		//do smth
-		prefixTraverse(node->left);
-		prefixTraverse(node->right);
+		if (node) {
+			cout << node->data << endl;
+			//do smth
+			prefixTraverse(node->left);
+			prefixTraverse(node->right);
+		}
 	}
 
 	void postfixTraverse(Node* node) {
-		postfixTraverse(node->left);
-		postfixTraverse(node->right);
-		//do smth
+		if (node) {
+			postfixTraverse(node->left);
+			postfixTraverse(node->right);
+			//do smth
+		}
 	}
 
 	void infixTraverse(Node* node) {
-		infixTraverse(node->left);
-		//do smth
-		infixTraverse(node->right);
+		if (node) {
+			infixTraverse(node->left);
+			//do smth
+			infixTraverse(node->right);
+		}
+	}
+	void remove(Node*& node, T element) {
+		if (element < node->data) {
+			remove(node->left, element);
+		}
+		else if (element > node->data) {
+			remove(node->right, element);
+		}
+		else if (element == node->data) {
+			if (node->left && node->right) {
+				T succ = successor(node);
+				node->data = succ;
+			}
+			else if (!node->left && node->right) {
+				Node* temp = node;
+				node = node->right;
+				delete temp;
+				temp = nullptr;
+			}
+			else if (node->left && !node->right) {
+				Node* temp = node;
+				node = node->left;
+				delete temp;
+				temp = nullptr;
+			}
+			else if (!node->left && !node->right) {
+				delete node;
+				node = nullptr;
+			}
+		}
+
 	}
 public:
 	BSTree() {
 		root = nullptr;
 	}
 	~BSTree() {
-		clear();
+		//clear();
 	}
 	bool isEmpty() {
 		return root == nullptr;
@@ -87,32 +127,7 @@ public:
 	void insert(T element) {
 		insert(root, element);
 	}
-	void remove(T element) {
-		Node* searchedNode = search(element);
-		if (searchedNode) {
-			if (searchedNode->left && searchedNode->right) {
-				T succ = successor(searchedNode);
-				searchedNode->data = succ;
-			}
-			else if (!searchedNode->left && searchedNode->right) {
-				Node* temp = searchedNode;
-				searchedNode = searchedNode->right;
-				delete temp;
-				temp = nullptr;
-			}
-			else if (searchedNode->left && !searchedNode->right) {
-				Node* temp = searchedNode;
-				searchedNode = searchedNode->left;
-				delete temp;
-				temp = nullptr;
-			}
-			else if (!searchedNode->left && !searchedNode->right) {
-				delete searchedNode;
-				searchedNode = nullptr;
-			}
-		}
-		
-	}
+	
 	Node*& search(T element) {
 		return search(root, element);
 	}
@@ -129,7 +144,9 @@ public:
 		infixTraverse(root);
 	}
 
-
+	void remove(T element) {
+		remove(root, element);
+	}
 	bool iterativeSearch(T element) {
 		Node* temp = root;
 		while (temp) {
