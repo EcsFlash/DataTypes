@@ -25,6 +25,7 @@ class HashTable2 {
 	int size;
 	int c;
 	int amount;
+	int d; //only for example
 
 	void insertToTable(Cell*& table, const T& elem) {
 		long long h = elem.hash() % size;
@@ -57,37 +58,25 @@ class HashTable2 {
 	int hash(int i, long long h) {
 		return (h + i * c) % size;
 	}
+	int hash_power2(int i, long long) {
+		return (h + i * c + i * i * d) % size;
+	}
+	int hash_power2_other(int i, long long) {
+		return (h + (i*i*c*c)) % size;
+	}
 
 	
 public:
 	HashTable2(int _size, int _c) {
-		if (_c <= 0) {
-			throw invalid_argument("c parameter must be greather than 0");
+		if (_c == 0) {
+			throw invalid_argument("c parameter must be not 0");
 		}
 		table = new Cell[_size];
 		size = _size;
 		c = _c;
 		amount = 0;
 	}
-	/*HashTable2(const HashTable2& other) : size(other.size), c(other.c), amount(other.amount) {
-		table = new Cell[size];
-		for (int i = 0; i < size; ++i) {
-			table[i] = other.table[i];
-		}
-	}
-	HashTable2& operator=(const HashTable2& other) {
-		if (this != &other) {
-			delete[] table;
-			size = other.size;
-			c = other.c;
-			amount = other.amount;
-			table = new Cell[size];
-			for (int i = 0; i < size; ++i) {
-				table[i] = other.table[i];
-			}
-		}
-		return *this;
-	}*/
+	
 	~HashTable2() {
 		delete[] table;
 	}
@@ -98,6 +87,7 @@ public:
 		insertToTable(table, elem);
 		amount++;
 	}
+
 	void remove(const T& elem) {
 		int index = indexOf(elem);
 		if (index != -1) {
@@ -105,6 +95,7 @@ public:
 			amount--;
 		}
 	}
+
 	int indexOf(const T& elem) {
 		long long true_hash = elem.hash();
 		long long hash = true_hash % size;
@@ -119,7 +110,7 @@ public:
 			i++;
 			hash_i = hash(i, hash_i);
 		}
-		throw runtime_error("element not found");
+		return -1;
 	}
 	bool search(const T& elem) {
 		if (indexOF(elem) != -1)

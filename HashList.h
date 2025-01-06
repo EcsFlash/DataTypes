@@ -42,10 +42,10 @@ public:
 		amount = 0;
 	}
 	~HashTableWithList() {
-		/*for (int i = 0; i < SIZE; i++) {
-			table[i].clear();
+		for (int i = 0; i < SIZE; i++) {
+			clear(table[i]);
 		}
-		delete[] table;*/
+		delete[] table;
 	};
 	void insert(const T& elem) {
 		if (amount * 3 > SIZE * 2) {
