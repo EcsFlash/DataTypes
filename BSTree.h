@@ -62,7 +62,6 @@ class BSTree {
 	void prefixTraverse(Node* node) {
 		if (node) {
 			cout << node->data << endl;
-			//do smth
 			prefixTraverse(node->left);
 			prefixTraverse(node->right);
 		}
@@ -72,14 +71,15 @@ class BSTree {
 		if (node) {
 			postfixTraverse(node->left);
 			postfixTraverse(node->right);
-			//do smth
+			cout << node->data << endl;
+
 		}
 	}
 
 	void infixTraverse(Node* node) {
 		if (node) {
 			infixTraverse(node->left);
-			//do smth
+			cout << node->data << endl;
 			infixTraverse(node->right);
 		}
 	}
