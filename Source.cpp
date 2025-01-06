@@ -48,5 +48,6 @@ int main() {
 	tree.insert(6);
 	tree.insert(-7);
 	tree.remove(1);
-	tree.prefixTraverse();
+	tree.infixTraverse();
+	//printPrefix()
 }
