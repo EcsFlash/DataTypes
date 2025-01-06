@@ -92,7 +92,7 @@ class BSTree {
 		}
 		else if (element == node->data) {
 			if (node->left && node->right) {
-				T succ = successor(node);
+				T succ = successor(node->left);
 				node->data = succ;
 			}
 			else if (!node->left && node->right) {
