@@ -3,7 +3,7 @@
 using namespace std;
 #pragma once
 
-class Tree{
+class FibTree{
 private:
 	struct Node
 	{
@@ -43,7 +43,7 @@ private:
 			}
 	}
 
-	void FibonTree2(Node*& node, int i) {
+	void FibonTree2(Node*& node, int& i) {
 		if (node)
 		{
 			FibonTree2(node->left, i);
@@ -53,11 +53,11 @@ private:
 		}
 	}
 public:
-	Tree() {
+	FibTree() {
 		root = nullptr; 
 	};
 
-	Tree(int i, int k) {
+	FibTree(int i, int k) {
 		root = nullptr;
 		FibonTree1(k, root);
 		FibonTree2(root, i);
