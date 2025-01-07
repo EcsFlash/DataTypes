@@ -236,9 +236,9 @@ inline void printDepth(BinaryTree* root)
 		{
 			cout << stack.peek()->data << " ";
 			cur = stack.peek();
-			cur->left = nullptr;
+			//cur->left = nullptr;
 			stack.removeElem();
-			
+
 			if (!isEmpty(cur->right))
 			{
 				stack.addElem(cur->right);
