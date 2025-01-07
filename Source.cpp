@@ -51,6 +51,7 @@ int main() {
 	//tree.remove2(1);
 	//tree.infixTraverse();
 	////printPrefix()
+	setlocale(LC_ALL, "ru");
 	string input = "(3+4)*5";
 	istringstream fin(input);
 	TTree formulaTree = createFormula(fin);
