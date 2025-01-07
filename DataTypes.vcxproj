@@ -143,10 +143,15 @@
     <ClCompile Include="BinaryTree.h" />
     <ClCompile Include="BracketBalance.cpp" />
     <ClCompile Include="Calculate_formula.cpp" />
+    <ClCompile Include="FibTree.h" />
     <ClCompile Include="InfixToPostfix.cpp" />
+    <ClCompile Include="PerfectlyBalancedTree.h" />
     <ClCompile Include="QueueList.h" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StackArr.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="hello.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,6 +7,9 @@
 #include "HashList.h"
 #include "BSTree.h"
 #include "Tree-formila.h"
+#include "FibTree.h"
+#include <fstream>
+#include "PerfectlyBalancedTree.h"
 int main() {
 	//ZOVZOVZOV
 	//
@@ -51,12 +54,18 @@ int main() {
 	//tree.remove2(1);
 	//tree.infixTraverse();
 	////printPrefix()
-	setlocale(LC_ALL, "ru");
-	string input = "(3+4)*5";
+	/*string input = "(3+4)*5";
 	istringstream fin(input);
 	TTree formulaTree = createFormula(fin);
 	cout << "Дерево в строку: " << printToStr(formulaTree) << endl; 
 	cout << "Результат вычисления: " << culcFormula(formulaTree) << endl;
-	deleteTree(formulaTree);
+	deleteTree(formulaTree);*/
 
+	ifstream in("hello.txt");
+	/*FibTree A(1, 5);
+	A.PrintTree();*/
+	PBTree<int> pbtree( 21, in);
+	pbtree.print();
+	//
+	//
 }

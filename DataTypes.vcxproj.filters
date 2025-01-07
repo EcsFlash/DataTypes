@@ -71,5 +71,16 @@
     <ClCompile Include="BinaryTree.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="FibTree.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfectlyBalancedTree.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="hello.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
