@@ -71,5 +71,8 @@
     <ClCompile Include="BinaryTree.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="FibTree.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
