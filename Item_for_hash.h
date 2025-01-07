@@ -25,7 +25,7 @@ public:
 	}
 	long long hash() const {
 		long long h = 0;
-		for (int i = 0; i < name.length(); i++) {
+		for (int i = 0; i < (int)name.length(); i++) {
 			h += (int)name[i] * pow(23, i);
 		}
 		return h + id;
