@@ -58,25 +58,27 @@ public:
 		amount++;
 		cout << amount << endl;
 	}
-	void remove(const T& elem) {
+	bool remove(const T& elem) {
 		int hash = elem.hash() % SIZE;
 		if (!table[hash]) {
-			return;
+			return false;
 		}
 		else {
 			if (table[hash]->data == elem) {
-				delete_from_head(table[hash]);
-					amount--;
+				deleteFromHead(table[hash]);
+				amount--;
+				return true;
 			}
 			else {
 				Node* p = search_pos(table[hash], elem);
-					if (p->next != nullptr) {
-						deleteAfterNode(p);
-						amount--;
-					}
-					else {
-						return false;
-					}
+				if (p->next != nullptr) {
+					deleteAfterNode(p);
+					amount--;
+					return true;
+				}
+				else {
+					return false;
+				}
 			}
 		}
 	}
@@ -127,10 +129,21 @@ private:
 		newEl->next = head;
 		head = newEl;
 	}
-	void delete_from_head(Node*& head) {
-
+	void deleteFromHead(Node*& head) {
+		if (head) {
+			Node* temp = head;
+			head = head->next;
+			delete temp;
+			temp = nullptr;
+		}
 	}
-	void delete_after_node(Node* p) {
+	void deleteAfter(Node* p) {
+		if (p) {
+			Node* temp = p->next;
+			p->next = temp->next;
+			delete temp;
+			temp = nullptr;
+		}
 	}
 
 };

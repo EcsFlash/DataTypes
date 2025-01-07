@@ -40,9 +40,6 @@ class BSTree {
 				return search(node->left, element);
 			}
 		}
-		else {
-			return nullptr;
-		}
 	}
 
 	T successor(Node*& node) {
@@ -115,11 +112,11 @@ class BSTree {
 			}
 		}
 		else {
-			throw invalid_argument("failed to remove")
+			throw invalid_argument("failed to remove");
 		}
 
 	}
-
+	
 	void clear(Node*& node) {
 		if (node) {
 			clear(node->right);
@@ -161,6 +158,7 @@ public:
 	void remove(T element) {
 		remove(root, element);
 	}
+	
 	bool iterativeSearch(T element) {
 		Node* temp = root;
 		while (temp) {
@@ -175,6 +173,29 @@ public:
 			}
 		}
 		return false;
+	}
+	void remove2(T element) {
+		Node* node = search(root, element);
+		if (node->left && node->right) {
+			T succ = successor(node->left);
+			node->data = succ;
+		}
+		else if (!node->left && node->right) {
+			Node* temp = node;
+			node = node->right;
+			delete temp;
+			temp = nullptr;
+		}
+		else if (node->left && !node->right) {
+			Node* temp = node;
+			node = node->left;
+			delete temp;
+			temp = nullptr;
+		}
+		else if (!node->left && !node->right) {
+			delete node;
+			node = nullptr;
+		}
 	}
 	void clear() {
 		clear(root);

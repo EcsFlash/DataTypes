@@ -47,7 +47,7 @@ int main() {
 	tree.insert(-4);
 	tree.insert(6);
 	tree.insert(-7);
-	tree.remove(1);
+	tree.remove2(1);
 	tree.infixTraverse();
 	//printPrefix()
 }
