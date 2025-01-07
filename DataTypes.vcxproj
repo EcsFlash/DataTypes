@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BSTree.h" />
     <ClInclude Include="DLList.h" />
     <ClInclude Include="DLListCircular.h" />
