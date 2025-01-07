@@ -119,12 +119,21 @@ class BSTree {
 		}
 
 	}
+
+	void clear(Node*& node) {
+		if (node) {
+			clear(node->right);
+			clear(node->left);
+			delete node;
+			node = nullptr;
+		}
+	}
 public:
 	BSTree() {
 		root = nullptr;
 	}
 	~BSTree() {
-		//clear();
+		clear();
 	}
 	bool isEmpty() {
 		return root == nullptr;
@@ -167,6 +176,8 @@ public:
 		}
 		return false;
 	}
-
+	void clear() {
+		clear(root);
+	}
 
 };
