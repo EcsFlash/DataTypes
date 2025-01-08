@@ -11,6 +11,7 @@
 #include <fstream>
 #include "PerfectlyBalancedTree.h"
 #include "QueueArr.h"
+#include "AVLTree.h"
 int main() {
 	//ZOVZOVZOV
 	//
@@ -70,28 +71,46 @@ int main() {
 	//
 	//
 
-	QueueArr<int> qu(3);
-	qu.enque(1);
-	qu.enque(1);
-	qu.enque(1);
-	qu.enque(1);
-	qu.deque();
-	qu.print();
-	cout << endl;
-	qu.deque();
-	cout << "#1  ";
-	qu.print();
-	cout << endl;
-	qu.deque();
-	cout << "#2  ";
-	qu.print();
-	cout << endl;
-	qu.deque();
-	cout << "#3  ";
-	qu.print();
-	cout << endl;
-	qu.deque();
+	//QueueArr<int> qu(3);
+	//qu.enque(1);
+	//qu.enque(1);
+	//qu.enque(1);
+	//qu.enque(1);
+	//qu.deque();
+	//qu.print();
+	//cout << endl;
+	//qu.deque();
+	//cout << "#1  ";
+	//qu.print();
+	//cout << endl;
+	//qu.deque();
+	//cout << "#2  ";
+	//qu.print();
+	//cout << endl;
+	//qu.deque();
+	//cout << "#3  ";
+	//qu.print();
+	//cout << endl;
+	//qu.deque();
 
-	qu.print();
+	//qu.print();
+	////
+
+	AVLTree<int> tree;
+	tree.Insert(5);
+	tree.Insert(4);
+	tree.Insert(3);
+	tree.Insert(2);
+	tree.Insert(9);
+	tree.Insert(1);
+
+	tree.Insert(32);
+	tree.Insert(21);
+	tree.Insert(25);
+	tree.Insert(162);
+	tree.Insert(162);
+	tree.Insert(162);
+	tree.Insert(162);
+	tree.infixOrder();
 	//
 }

@@ -20,7 +20,7 @@ class HashTableWithList {
 	int SIZE;
 	int amount;
 
-	void resize() {
+	/*void resize() {
 		Node** tmp = new Node * [SIZE * 2];
 		for (int i = 0; i < SIZE; i++) {
 			tmp[i] = table[i];
@@ -31,6 +31,25 @@ class HashTableWithList {
 		SIZE *= 2;
 		delete[] table;
 		table = tmp;
+	}*/
+	void resize() {
+		Node** tmp = new Node * [SIZE * 2];
+		for (int i = 0; i < SIZE*2; i++) {
+			tmp[i] = nullptr;
+		}
+		for (int i = 0; i < SIZE; i++) {
+			insertInto(tmp, table[i]);
+		}
+		SIZE *= 2;
+		delete[] table;
+		table = tmp;
+	}
+
+	void insertInto(Node** table, const T& elem) {
+		long long h = elem.hash();
+		int hash = h % SIZE;
+		addToHead(table[hash], elem);
+		amount++;
 	}
 public:
 	HashTableWithList(int size) {

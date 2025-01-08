@@ -138,6 +138,7 @@
     <ClInclude Include="LListWH.h" />
     <ClInclude Include="QueueArr.h" />
     <ClInclude Include="StackList.h" />
+    <ClInclude Include="Tree-formila.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryTree.h" />

@@ -53,7 +53,7 @@ public:
 		head = nullptr;
 		T temp;
 		for (int i = 0; i < size; i++) {
-			for (int j = 0; j < size-1; j++) {
+			for (int j = 0; j < size; j++) {
 				if (arr[i] < arr[j]) {
 					temp = arr[j];
 					arr[j] = arr[i];

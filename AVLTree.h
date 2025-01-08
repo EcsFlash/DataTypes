@@ -48,7 +48,7 @@ protected:
 	void RightRotation(Node*& p)
 	{
 
-		TreeNode* q = p->left;
+		Node* q = p->left;
 		p->left = q->right;
 		q->right = p;
 		commitHeight(p);
@@ -58,7 +58,7 @@ protected:
 
 	void LeftRotation(Node*& p)
 	{
-		TreeNode* q = p->right;
+		Node* q = p->right;
 		p->right = q->left;
 		q->left = p;
 		commitHeight(p);
@@ -87,7 +87,7 @@ protected:
 
 	void Insert(Node*& node, T elem) {
 		if (node == nullptr) {
-			node = new Node{ elem, 1, nullptr, nullptr };
+			node = new Node(elem);
 		}
 		else if (elem < node->data) {
 			Insert(node->left, elem);
@@ -126,20 +126,36 @@ protected:
 			cout << node->data << "  ";
 		}
 	}
+
+	void prefixOrder(Node*& node) {
+		if (node) {
+			cout << node->data << endl;
+			prefixOrder(node->left);
+			prefixOrder(node->right);
+		}
+	}
+
+	void infixOrder(Node* node) {
+		if (node) {
+			infixOrder(node->left);
+			cout << node->data << " ";
+			infixOrder(node->right);
+		}
+	}
 	T succesor(Node*& node) {	
 		if (node->right) {
 			return succesor(node->right);
 		}
 		else {
 			Node* temp = node;
-			node = node->left;
 			T result = node->data;
+			node = node->left;
 			delete temp;
 			temp = nullptr;
 			return result;
 		}
 	}
-	void remove(Node*& node) {
+	void remove(Node*& node, T elem) {
 		if (node) {
 			if (node->left && node->right) {
 				T succ = succesor(node->left);
@@ -183,5 +199,14 @@ public:
 	}
 	void postOrder() {
 		postOrder(root);
+	}
+	void prefixOrder() {
+		prefixOrder(root);
+	}
+	void infixOrder() {
+		infixOrder(root);
+	}
+	void remove(T elem) {
+		remove(root, elem);
 	}
 };

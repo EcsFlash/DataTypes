@@ -92,6 +92,7 @@ public:
 				Node* newElement = new Node(element);
 				newElement->next = whereTo->next;
 				newElement->prev = whereTo;
+				whereTo->next = newElement;
 				tail = newElement;
 			}
 		}
