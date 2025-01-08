@@ -47,7 +47,7 @@ class HashTable2 {
 		Cell* tmp = new Cell[size * 2];
 		int _size = size;
 		size *= 2;
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < _size; i++) {
 			if (table[i].status == USED) {
 				insertToTable(tmp, table[i].object);
 			}
