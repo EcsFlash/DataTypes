@@ -68,7 +68,6 @@ protected:
 
 	void balance(Node*& p)
 	{
-		commitHeight(p);
 		int bfactor = Bfactor(p);
 		if (bfactor == 2)
 		{
@@ -83,6 +82,8 @@ protected:
 				LeftRotation(p->left);
 			RightRotation(p);
 		}
+		commitHeight(p);
+
 	}
 
 	void Insert(Node*& node, T elem) {
