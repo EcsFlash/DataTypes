@@ -15,6 +15,18 @@
 int main() {
 	//ZOVZOVZOV
 	//
+
+
+	HashTableWithList<Item> hash(100);
+	for (int i = 0; i < 40; i++) {
+		hash.insert(Item(i, "name"));
+	}
+	hash.print();
+	cout << "#######" << endl;
+	for (int i = 40; i < 80; i++) {
+		hash.insert(Item(i, "bo4ka"));
+	}
+	hash.print();
 	/*HashTable2<Item> hashT(100, 2);
 	for (int i = 0; i < 30; i++) {
 		hashT.insert(Item(i, "pukpuk"));
@@ -96,21 +108,22 @@ int main() {
 	//qu.print();
 	////
 
-	AVLTree<int> tree;
-	tree.Insert(5);
-	tree.Insert(4);
-	tree.Insert(3);
-	tree.Insert(2);
-	tree.Insert(9);
-	tree.Insert(1);
+	//AVLTree<int> tree;
+	//tree.Insert(5);
+	//tree.Insert(4);
+	//tree.Insert(3);
+	//tree.Insert(2);
+	//tree.Insert(9);
+	//tree.Insert(1);
 
-	tree.Insert(32);
-	tree.Insert(21);
-	tree.Insert(25);
-	tree.Insert(162);
-	tree.Insert(162);
-	tree.Insert(162);
-	tree.Insert(162);
-	tree.infixOrder();
+	//tree.Insert(32);
+	//tree.Insert(21);
+	//tree.Insert(25);
+	//tree.Insert(162);
+	//tree.Insert(162);
+	//tree.Insert(162);
+	//tree.Insert(162);
+	////tree.infixOrder();
+	//tree.prefixOrder();
 	//
 }

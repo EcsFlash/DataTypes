@@ -38,19 +38,17 @@ class HashTableWithList {
 			tmp[i] = nullptr;
 		}
 		for (int i = 0; i < SIZE; i++) {
-			insertInto(tmp, table[i]);
+			if (table[i]) {
+				long long h = table[i]->data.hash();
+				int hash = h % (SIZE*2);
+				addToHead(tmp[hash], table[i]->data);
+			}
 		}
 		SIZE *= 2;
 		delete[] table;
 		table = tmp;
 	}
 
-	void insertInto(Node** table, const T& elem) {
-		long long h = elem.hash();
-		int hash = h % SIZE;
-		addToHead(table[hash], elem);
-		amount++;
-	}
 public:
 	HashTableWithList(int size) {
 		SIZE = size;
