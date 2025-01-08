@@ -49,14 +49,12 @@ public:
 	};
 	void insert(const T& elem) {
 		if (amount * 3 > SIZE * 2) {
-			cout << "resi" << endl;
 			resize();
 		}
 		long long h = elem.hash();
 		int hash = h % SIZE;
 		addToHead(table[hash], elem);
 		amount++;
-		cout << amount << endl;
 	}
 	bool remove(const T& elem) {
 		int hash = elem.hash() % SIZE;
@@ -101,7 +99,7 @@ public:
 	}
 	Node* search_pos(Node* head, const T& elem) {
 		Node* cur = head;
-		while (cur->next != nullptr && cur->next.data != elem) {
+		while (cur->next != nullptr && cur->next->data != elem) {
 			cur = cur->next;
 		}
 		return cur;
@@ -146,4 +144,9 @@ private:
 		}
 	}
 
+	void clear(Node*& node) {
+		while (node) {
+			deleteFromHead(node);
+		}
+	}
 };

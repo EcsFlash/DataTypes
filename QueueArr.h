@@ -8,19 +8,17 @@ class QueueArr {
 	int head;
 	int tail;
 public:
-	QueueArr() {
+	QueueArr(int _size) {
 		head = 0;
 		tail = -1;
 		length = 0;
-		que = new int[size];
+		size = _size;
+		que = new T[size];
 	}
 
 	~QueueArr(){
 		delete[] que;
 		que = nullptr;
-	}
-	QueueArr(const Queue& other){
-
 	}
 	void enque(T elem){
 		if (length < size) {
@@ -58,5 +56,10 @@ public:
 	}
 	int getLength(){
 		return length;
+	}
+	void print() {
+		for (int i = head; i <= tail; i++) {
+			cout << que[i] << " ";
+		}
 	}
 };
