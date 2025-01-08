@@ -102,8 +102,8 @@ public:
 		int i = 0;
 		int hash_i = hash;
 		while (table[hash_i].status != FREE) {
-			if (table[hash].status == USED) {
-				if (table[hash].object == elem) {
+			if (table[hash_i].status == USED) {
+				if (table[hash_i].object == elem) {
 					return hash_i;
 				}
 			}

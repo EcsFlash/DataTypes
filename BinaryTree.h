@@ -248,3 +248,28 @@ inline void printDepth(BinaryTree* root)
 		else done = true;
 	}
 }
+
+inline bool compareTree(BinaryTree* root1, BinaryTree* root2) {
+	if (!root2) {
+		return true;
+	}
+	else {
+		if (root1 && root1->data == root2->data && compareTree(root1->left, root2->left) &&
+			compareTree(root1->right, root2->right)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	return false;
+}
+inline void searchAndCount(BinaryTree* root1, BinaryTree* root2, int* i) {
+	if (root1 && root2) {
+		if (compareTree(root1, root2)) {
+			(*i)++;
+		}
+		searchAndCount(root1->left, root2, i);
+		searchAndCount(root1->right, root2, i);
+	}
+}
