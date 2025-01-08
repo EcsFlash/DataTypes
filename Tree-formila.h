@@ -1,68 +1,128 @@
 #pragma once
 
-#include <iostream> 
-#include <string> 
+#include <string>
+#include <iostream>
+#include "StackList.h"
+
 using namespace std;
 
-struct TreeNode {
-    char data;
-    TreeNode* left;
-    TreeNode* right;
-};
+template <typename T>
+class FormulaTree {
+public:
+    struct Node {
+        T data;
+        Node* left;
+        Node* right;
 
-using TTree = TreeNode*;
+        Node(T _data) : data(_data), left(nullptr), right(nullptr) {}
+    };
 
+    Node* createFormula(const string& str) {
+        StackList<Node*> operands;
+        StackList<char> operators;
 
-TTree createFormula(istream& fin) {
-    char ch = fin.get();
-    TTree node = new TreeNode;
-    if (ch >= '0' && ch <= '9') {
-        node->data = ch;
-        node->left = nullptr;
-        node->right = nullptr;
+        int i = 0;
+        while (i < str.length()) {
+            char ch = str[i];
+            if (isdigit(ch)) {
+                operands.add(parseNumber(str, i));
+            }
+            else if (ch == '(') {
+                operators.add(ch);
+                i++;
+            }
+            // Закрывающая скобка
+            else if (ch == ')') {
+                while (!operators.isEmpty() && operators.peek() != '(') {
+                    processOperator(operators, operands);
+                }
+                operators.remove();
+                i++;
+            }
+            // Операторы
+            else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+                while (!operators.isEmpty() && precedence(operators.peek()) >= precedence(ch)) {
+                    processOperator(operators, operands);
+                }
+                operators.add(ch);
+                i++;
+            }
+        }
+
+        while (!operators.isEmpty()) {
+            processOperator(operators, operands);
+        }
+
+        return operands.peek();
     }
-    else if (ch == '(') {
-        node->left = createFormula(fin);
-        node->data = fin.get(); 
-        node->right = createFormula(fin);
-        ch = fin.get(); 
-    }
-    return node;
-}
 
+    void printInOrder(Node* node) {
+        if (node) {
+            if (node->left) printInOrder(node->left);
 
-string printToStr(TTree root) {
-    if (!root->left && !root->right) {
-        return string(1, root->data);
-    }
-    else {
-        return '(' + printToStr(root->left) + root->data + printToStr(root->right) + ')';
-    }
-}
+            if (node->data == '+' || node->data == '-' || node->data == '*' || node->data == '/') {
+                cout << (char)node->data << " ";
+            }
+            else {
+                cout << node->data << " ";
+            }
 
-
-int culcFormula(TTree root) {
-    if (!root->left && !root->right) {
-        return root->data - '0';
+            if (node->right) printInOrder(node->right);
+        }
     }
-    else {
-        int leftValue = culcFormula(root->left);
-        int rightValue = culcFormula(root->right);
+    T evaluate(Node* root) {
+        if (root == nullptr) {
+            throw invalid_argument("Tree is empty");
+        }
+        if (!(root->data == '+' || root->data == '-' || root->data == '*' || root->data == '/')) {
+            return root->data;
+        }
+        T leftValue = evaluate(root->left);
+        T rightValue = evaluate(root->right);
+
         switch (root->data) {
-        case '-': return leftValue - rightValue;
-        case '+': return leftValue + rightValue;
-        case '*': return leftValue * rightValue;
+        case '+':
+            return leftValue + rightValue;
+        case '-':
+            return leftValue - rightValue;
+        case '*':
+            return leftValue * rightValue;
+        case '/':
+            if (rightValue == 0) {
+                throw invalid_argument("Division by zero");
+            }
+            return leftValue / rightValue;
         default:
             throw invalid_argument("Unknown operator");
         }
     }
-}
-
-
-void deleteTree(TTree root) {
-    if (root) {
-        deleteTree(root->left);
-        deleteTree(root->right);
-        delete root;
+private:
+    Node* parseNumber(const string& str, int& i) {
+        int start = i;
+        while (i < str.length() && isdigit(str[i])) {
+            i++;
+        }
+        int number = stoi(str.substr(start, i - start));
+        return new Node(number);
     }
-}
+
+    int precedence(char op) {
+        if (op == '+' || op == '-') return 1;
+        if (op == '*' || op == '/') return 2;
+        return 0;
+    }
+
+    void processOperator(StackList<char>& operators, StackList<Node*>& operands) {
+        char op = operators.peek();
+        operators.remove();
+        Node* right = operands.peek();
+        operands.remove();
+        Node* left = operands.peek();
+        operands.remove();
+        Node* node = new Node(op);
+        node->left = left;
+        node->right = right;
+        operands.add(node);
+    }
+
+};
