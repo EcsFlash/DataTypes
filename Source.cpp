@@ -73,17 +73,25 @@ int main() {
 	QueueArr<int> qu(3);
 	qu.enque(1);
 	qu.enque(1);
-	qu.print();
-	cout << endl;
 	qu.enque(1);
-	qu.print();
-	cout << endl;
 	qu.enque(1);
-	qu.print();
-	cout << endl;
 	qu.deque();
 	qu.print();
 	cout << endl;
-	cout << qu.peek() << endl;
+	qu.deque();
+	cout << "#1  ";
+	qu.print();
+	cout << endl;
+	qu.deque();
+	cout << "#2  ";
+	qu.print();
+	cout << endl;
+	qu.deque();
+	cout << "#3  ";
+	qu.print();
+	cout << endl;
+	qu.deque();
+
+	qu.print();
 	//
 }

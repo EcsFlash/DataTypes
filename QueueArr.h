@@ -29,7 +29,7 @@ public:
 		}
 	}
 	void deque(){
-		/*if (length > 1) {
+		if (length > 1) {
 			head++;
 			head %= size;
 			length--;
@@ -38,12 +38,8 @@ public:
 			head = 0;
 			tail = -1;
 			length = 0;
-		}*/
-		if (!isEmpty()) {
-			head++;
-			head %= size;
-			length--;
 		}
+		
 	}
 	T peek(){
 		if(head>0)
@@ -58,6 +54,7 @@ public:
 		return length;
 	}
 	void print() {
+		cout << "head " << head << "  tail " << tail << endl;
 		for (int i = head; i <= tail; i++) {
 			cout << que[i] << " ";
 		}
