@@ -47,6 +47,7 @@ public:
 			else {
 				delete head, tail;
 				head = tail = nullptr;
+				count = 0;
 			}
 		}
 	}

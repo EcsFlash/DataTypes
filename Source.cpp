@@ -10,6 +10,7 @@
 #include "FibTree.h"
 #include <fstream>
 #include "PerfectlyBalancedTree.h"
+#include "QueueArr.h"
 int main() {
 	//ZOVZOVZOV
 	//
@@ -61,11 +62,36 @@ int main() {
 	cout << "Результат вычисления: " << culcFormula(formulaTree) << endl;
 	deleteTree(formulaTree);*/
 
-	ifstream in("hello.txt");
-	/*FibTree A(1, 5);
-	A.PrintTree();*/
-	PBTree<int> pbtree( 21, in);
-	pbtree.print();
+	//ifstream in("hello.txt");
+	//*FibTree A(1, 5);
+	//A.PrintTree();*/
+	//PBTree<int> pbtree( 21, in);
+	//pbtree.print();
 	//
+	//
+
+	QueueArr<int> qu(3);
+	qu.enque(1);
+	qu.enque(1);
+	qu.enque(1);
+	qu.enque(1);
+	qu.deque();
+	qu.print();
+	cout << endl;
+	qu.deque();
+	cout << "#1  ";
+	qu.print();
+	cout << endl;
+	qu.deque();
+	cout << "#2  ";
+	qu.print();
+	cout << endl;
+	qu.deque();
+	cout << "#3  ";
+	qu.print();
+	cout << endl;
+	qu.deque();
+
+	qu.print();
 	//
 }
