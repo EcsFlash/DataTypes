@@ -1,5 +1,5 @@
 #pragma once
-
+#include <fstream>
 #include <iostream> 
 #include <string> 
 using namespace std;
@@ -13,7 +13,7 @@ struct TreeNode {
 using TTree = TreeNode*;
 
 
-TTree createFormula(istream& fin) {
+inline TTree createFormula(ifstream& fin) {
     char ch = fin.get();
     TTree node = new TreeNode;
     if (ch >= '0' && ch <= '9') {
@@ -31,17 +31,18 @@ TTree createFormula(istream& fin) {
 }
 
 
-string printToStr(TTree root) {
-    if (!root->left && !root->right) {
-        return string(1, root->data);
-    }
-    else {
-        return '(' + printToStr(root->left) + root->data + printToStr(root->right) + ')';
-    }
-}
+inline string printToStr(TTree root) {
+    
+        if (!root->left && !root->right) {
+            return string(1, root->data);
+        }
+        else {
+            return '(' + printToStr(root->left) + root->data + printToStr(root->right) + ')';
+        }
+ }
 
 
-int culcFormula(TTree root) {
+inline int culcFormula(TTree root) {
     if (!root->left && !root->right) {
         return root->data - '0';
     }
@@ -59,7 +60,15 @@ int culcFormula(TTree root) {
 }
 
 
-void deleteTree(TTree root) {
+inline void prefixFormulaOrder(TreeNode* root) {
+    if (root) {
+        cout << root->data << endl;
+        prefixFormulaOrder(root->left);
+        prefixFormulaOrder(root->right);
+    }
+}
+
+inline void deleteTree(TTree root) {
     if (root) {
         deleteTree(root->left);
         deleteTree(root->right);

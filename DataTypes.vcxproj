@@ -144,6 +144,7 @@
     <ClCompile Include="BinaryTree.h" />
     <ClCompile Include="BracketBalance.cpp" />
     <ClCompile Include="Calculate_formula.cpp" />
+    <ClCompile Include="example.cpp" />
     <ClCompile Include="FibTree.h" />
     <ClCompile Include="InfixToPostfix.cpp" />
     <ClCompile Include="PerfectlyBalancedTree.h" />

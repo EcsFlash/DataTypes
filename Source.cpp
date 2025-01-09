@@ -36,7 +36,7 @@ int main() {
 	//hashT.insert(Item(12, "pukpuk"));
 	//hashT.print();
 	//cout << Calculator_formula();
-	BinaryTree* root = new BinaryTree(2);
+	/*BinaryTree* root = new BinaryTree(2);
 
 	BinaryTree* rootl = new BinaryTree(3);
 	BinaryTree* rootr = new BinaryTree(4);
@@ -63,7 +63,8 @@ int main() {
 	attachLeftTree(root2, root2l);
 	int* i = new int(0);
 	searchAndCount(root, root2, i);
-	cout << *i << endl;
+	cout << *i << endl;*/
+	//
 	//BinaryTree* left =new BinaryTree(4);
 	//BinaryTree* right = new BinaryTree(5);
 	//BinaryTree* root = nullptr;
@@ -102,7 +103,7 @@ int main() {
 	cout << "Результат вычисления: " << culcFormula(formulaTree) << endl;
 	deleteTree(formulaTree);*/
 
-	//ifstream in("hello.txt");
+	ifstream in("hello.txt");
 	//*FibTree A(1, 5);
 	//A.PrintTree();*/
 	//PBTree<int> pbtree( 21, in);
@@ -152,5 +153,13 @@ int main() {
 	//tree.Insert(162);
 	////tree.infixOrder();
 	//tree.prefixOrder();
+	//
+
+	TreeNode* root = createFormula(in);
+	prefixFormulaOrder(root);
+	cout << printToStr(root) << endl;
+
+	cout << culcFormula(root) << endl;
+	//
 	//
 }

@@ -80,6 +80,9 @@
     <ClCompile Include="PerfectlyBalancedTree.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="example.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="hello.txt">

@@ -264,8 +264,19 @@ inline bool compareTree(BinaryTree* root1, BinaryTree* root2) {
 	}
 	return false;
 }
+inline bool compareTree2(BinaryTree* root1, BinaryTree* root2) {
+
+	if (!root1 && !root2) {
+		return true;
+	}if (!root1 || !root2) {
+		return false;
+	}
+	return (root2->data == root1->data) && compareTree2(root1->left, root2->left) && compareTree2(root1->right, root2->right);
+}
+
+
 inline void searchAndCount(BinaryTree* root1, BinaryTree* root2, int* i) {
-	if (root1 && root2) {
+	if (root1) {
 		if (compareTree(root1, root2)) {
 			(*i)++;
 		}
