@@ -4,13 +4,20 @@
 #include <string> 
 using namespace std;
 
-struct TreeNode {
-    char data;
-    TreeNode* left;
-    TreeNode* right;
-};
+template <typename T>
+class FormulaTree {
+public:
+    struct Node {
+        T data;
+        Node* left;
+        Node* right;
 
-using TTree = TreeNode*;
+        Node(T _data) : data(_data), left(nullptr), right(nullptr) {}
+    };
+
+    Node* createFormula(const string& str) {
+        StackList<Node*> operands;
+        StackList<char> operators;
 
 
 inline TTree createFormula(ifstream& fin) {
@@ -57,7 +64,15 @@ inline int culcFormula(TTree root) {
             throw invalid_argument("Unknown operator");
         }
     }
-}
+private:
+    Node* parseNumber(const string& str, int& i) {
+        int start = i;
+        while (i < str.length() && isdigit(str[i])) {
+            i++;
+        }
+        int number = stoi(str.substr(start, i - start));
+        return new Node(number);
+    }
 
 
 inline void prefixFormulaOrder(TreeNode* root) {
@@ -74,4 +89,18 @@ inline void deleteTree(TTree root) {
         deleteTree(root->right);
         delete root;
     }
-}
+
+    void processOperator(StackList<char>& operators, StackList<Node*>& operands) {
+        char op = operators.peek();
+        operators.remove();
+        Node* right = operands.peek();
+        operands.remove();
+        Node* left = operands.peek();
+        operands.remove();
+        Node* node = new Node(op);
+        node->left = left;
+        node->right = right;
+        operands.add(node);
+    }
+
+};
