@@ -103,7 +103,7 @@ int main() {
 	cout << "Результат вычисления: " << culcFormula(formulaTree) << endl;
 	deleteTree(formulaTree);*/
 
-	ifstream in("hello.txt");
+	//ifstream in("hello.txt");
 	//*FibTree A(1, 5);
 	//A.PrintTree();*/
 	//PBTree<int> pbtree( 21, in);
@@ -136,30 +136,31 @@ int main() {
 	//qu.print();
 	////
 
-	//AVLTree<int> tree;
-	//tree.Insert(5);
-	//tree.Insert(4);
-	//tree.Insert(3);
-	//tree.Insert(2);
-	//tree.Insert(9);
-	//tree.Insert(1);
+	AVLTree<int> tree;
+	tree.Insert(5);
+	tree.Insert(4);
+	tree.Insert(3);
+	tree.Insert(2);
+	tree.Insert(9);
+	tree.Insert(1);
 
-	//tree.Insert(32);
-	//tree.Insert(21);
-	//tree.Insert(25);
-	//tree.Insert(162);
-	//tree.Insert(162);
-	//tree.Insert(162);
-	//tree.Insert(162);
+	tree.Insert(32);
+	tree.Insert(21);
+	tree.Insert(25);
+	tree.Insert(162);
+	tree.Insert(162);
+	tree.Insert(162);
+	tree.Insert(162);
+	tree.iterativeDFS();
 	////tree.infixOrder();
 	//tree.prefixOrder();
 	//
 
-	TreeNode* root = createFormula(in);
+	/*TreeNode* root = createFormula(in);
 	prefixFormulaOrder(root);
 	cout << printToStr(root) << endl;
 
-	cout << culcFormula(root) << endl;
+	cout << culcFormula(root) << endl;*/
 	//
 	//
 }

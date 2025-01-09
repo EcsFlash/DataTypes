@@ -210,4 +210,63 @@ public:
 	void remove(T elem) {
 		remove(root, elem);
 	}
+	void bfs() {
+		if (!isEmpty()) {
+			Queue<Node*> que;
+			que.enque(root);
+			while (!que.isEmpty()) {
+				Node* cur = que.peek();
+				que.deque();
+				cout << cur->data << endl;
+				if(cur->left)
+					que.enque(cur->left);
+				if(cur->right)
+					que.enque(cur->right);
+			}
+		}
+	}
+	void iterativeDFS() {
+		StackList<Node*> stack;
+		Node* cur = root;
+		stack.addElem(cur);
+		while (!stack.isEmpty())
+		{
+			if (cur->left) {
+				cur = cur->left;
+				stack.addElem(cur);
+			}
+			else {
+				cur = stack.peek();
+				stack.removeElem();
+				cout << cur->data << endl;
+				if (cur->right) {
+					cur = cur->right;
+					stack.addElem(cur);
+				}
+
+			}
+
+		}
+	}
+	void iterativeDFSPR() {
+		StackList<Node*> stack;
+		Node* cur = root;
+		stack.addElem(cur);
+		while (!stack.isEmpty())
+		{
+			cur = stack.peek();
+			stack.removeElem();
+			cout << cur->data << endl;
+			
+			if (cur->right) {
+				stack.addElem(cur->right);
+			}
+			if (cur->left) {
+				stack.addElem(cur->left);
+			}
+
+			
+		}
+	}
+
 };
