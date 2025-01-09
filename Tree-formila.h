@@ -52,6 +52,7 @@ inline int culcFormula(TreeNode* root) {
         case '-': return leftValue - rightValue;
         case '+': return leftValue + rightValue;
         case '*': return leftValue * rightValue;
+        case '/': return leftValue / rightValue;
         default:
             throw invalid_argument("Unknown operator");
         }
