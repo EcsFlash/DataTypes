@@ -10,12 +10,11 @@ struct TreeNode {
     TreeNode* right;
 };
 
-using TTree = TreeNode*;
 
 
-inline TTree createFormula(ifstream& fin) {
+inline TreeNode* createFormula(ifstream& fin) {
     char ch = fin.get();
-    TTree node = new TreeNode;
+    TreeNode* node = new TreeNode;
     if (ch >= '0' && ch <= '9') {
         node->data = ch;
         node->left = nullptr;
@@ -31,7 +30,7 @@ inline TTree createFormula(ifstream& fin) {
 }
 
 
-inline string printToStr(TTree root) {
+inline string printToStr(TreeNode* root) {
 
     if (!root->left && !root->right) {
         return string(1, root->data);
@@ -42,7 +41,7 @@ inline string printToStr(TTree root) {
 }
 
 
-inline int culcFormula(TTree root) {
+inline int culcFormula(TreeNode* root) {
     if (!root->left && !root->right) {
         return root->data - '0';
     }
@@ -68,10 +67,11 @@ inline void prefixFormulaOrder(TreeNode* root) {
     }
 }
 
-inline void deleteTree(TTree root) {
+inline void deleteTree(TreeNode* root) {
     if (root) {
         deleteTree(root->left);
         deleteTree(root->right);
         delete root;
+        root = nullptr;
     }
 }
