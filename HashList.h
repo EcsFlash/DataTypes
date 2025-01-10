@@ -39,9 +39,13 @@ class HashTableWithList {
 		}
 		for (int i = 0; i < SIZE; i++) {
 			if (table[i]) {
-				long long h = table[i]->data.hash();
-				int hash = h % (SIZE*2);
-				addToHead(tmp[hash], table[i]->data);
+				Node* temp = table[i];
+				while (temp) {
+					long long h = temp->data.hash();
+					int hash = h % (SIZE * 2);
+					addToHead(tmp[hash], temp->data);
+					temp = temp->next;
+				}
 			}
 		}
 		SIZE *= 2;
