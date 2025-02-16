@@ -12,11 +12,30 @@
 #include "PerfectlyBalancedTree.h"
 #include "QueueArr.h"
 #include "AVLTree.h"
+#include "Map.h"
+#include "map"
 int main() {
 	//ZOVZOVZOV
 	//
-
-
+	map<char, int> smap;
+	MapLinear<char, int> map;
+	map['g'] = 5;
+	map['l'] = 78;
+	map['u'] = 100;
+	int* a = &map['g']; // ÂÎÒ İÒÈÌÈ ÄÂÓÌß ÑÒĞÎÊÀÌÈ ÌÎÆÍÎ ÂÇÎĞÂÀÒÜ ÂÑ¨
+	map.remove('g');	// ÒÀÊ ÄÅËÀÒÜ ÍÅËÜÇß ÂÎÎÁÙÅ
+	cout << *a << endl;
+	smap['a'] = 99;		//À, ÏÎÕÓÉ
+	int* b = &smap['a'];// ÑÒÀÍÄÀĞÒÍÓŞ ÌÀÏÓ ÒÎÆÅ ÌÎÆÍÎ ÂÇÎĞÂÀÒÜ Ê ÕÓßÌ ÑÎÁÀ×ÜÈÌ
+	cout << *b << endl; //
+	smap.erase('a');	//
+	cout << *b << endl; //
+	/*int* a = &map['g'];
+	cout << a << endl;*/
+	//map.remove('l');
+	map.print();
+	//
+	//
 	//HashTableWithList<Item> hash(100);
 	//for (int i = 0; i < 40; i++) {
 	//	hash.insert(Item(i, "name"));
@@ -136,22 +155,24 @@ int main() {
 	//qu.print();
 	////
 
-	AVLTree<int> tree;
-	tree.Insert(5);
-	tree.Insert(4);
-	tree.Insert(3);
-	tree.Insert(2);
-	tree.Insert(9);
-	tree.Insert(1);
+	//AVLTree<int> tree;
+	//tree.Insert(5);
+	//tree.Insert(4);
+	//tree.Insert(3);
+	//tree.Insert(2);
+	//tree.Insert(9);
+	//tree.Insert(1);
 
-	tree.Insert(32);
-	tree.Insert(21);
-	tree.Insert(25);
-	tree.Insert(162);
-	tree.Insert(162);
-	tree.Insert(162);
-	tree.Insert(162);
-	tree.iterativeDFS();
+	//tree.Insert(32);
+	//tree.Insert(21);
+	//tree.Insert(25);
+	//tree.Insert(162);
+	//tree.Insert(162);
+	//tree.Insert(162);
+	//tree.Insert(162);
+	//tree.iterativeDFS();
+
+
 	////tree.infixOrder();
 	//tree.prefixOrder();
 	//

@@ -136,6 +136,7 @@
     <ClInclude Include="Item_for_hash.h" />
     <ClInclude Include="LList.h" />
     <ClInclude Include="LListWH.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="QueueArr.h" />
     <ClInclude Include="StackList.h" />
     <ClInclude Include="Tree-formila.h" />
