@@ -17,23 +17,24 @@
 int main() {
 	//ZOVZOVZOV
 	//
-	map<char, int> smap;
-	MapLinear<char, int> map;
-	map['g'] = 5;
-	map['l'] = 78;
-	map['u'] = 100;
-	int* a = &map['g']; // бнр щрхлх дбслъ ярпнйюлх лнфмн бгнпбюрэ бя╗
-	map.remove('g');	// рюй декюрэ мекэгъ бннаые
-	cout << *a << endl;
-	smap['a'] = 99;		//ю, онуси
-	int* b = &smap['a'];// ярюмдюпрмсч люос рнфе лнфмн бгнпбюрэ й усъл янаювэхл
-	cout << *b << endl; //
-	smap.erase('a');	//
-	cout << *b << endl; //
-	/*int* a = &map['g'];
-	cout << a << endl;*/
-	//map.remove('l');
-	map.print();
+	//map<char, int> smap;
+	//MapLinear<char, int> map;
+	//map['g'] = 5;
+	//map['l'] = 78;
+	//map['u'] = 100;
+	//int* a = &map['g']; // бнр щрхлх дбслъ ярпнйюлх лнфмн бгнпбюрэ бя╗
+	//map.remove('g');	// рюй декюрэ мекэгъ бннаые
+	//cout << *a << endl;
+	//smap['a'] = 99;		//ю, онуси
+	//int* b = &smap['a'];// ярюмдюпрмсч люос рнфе лнфмн бгнпбюрэ й усъл янаювэхл
+	//cout << *b << endl; //
+	//smap.erase('a');	//
+	//cout << *b << endl; //
+	//cout << smap['c'] << endl;
+	///*int* a = &map['g'];
+	//cout << a << endl;*/
+	////map.remove('l');
+	//map.print();
 	//
 	//
 	//HashTableWithList<Item> hash(100);
@@ -184,4 +185,7 @@ int main() {
 	cout << culcFormula(root) << endl;*/
 	//
 	//
+
+	Map<char, int> map;
+	map
 }

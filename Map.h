@@ -1,209 +1,154 @@
 #pragma once
-#include "HashList.h"
+
+
 
 template<typename K, typename V>
-class MapLinear {
-	struct Node {
-		K key;
-		V data;
-		Node* next;
-		Node() {
-			key = K();
-			data = V();
-			next = nullptr;
-		}
-		Node(const K& _key, const V& _data) {
-			key = _key;
-			data = _data;
-			next = nullptr;
-		}
+class Map {
+	enum Status {
+		FREE, USED, DELETED
 	};
-	Node** table;
-	int SIZE;
-	int amount;
+	struct Cell {
+		Status status = FREE;
+		K key;
+		V object;
+		Cell() {
+			status = FREE;
+			object = V();
+		}
+		void clear() {
+			status = DELETED;
+		}
+		void set( const K& _key, const V& obj) {
+			key = _key;
+			object = obj;
+			status = USED;
+		}
 
-	/*void resize() {
-		Node** tmp = new Node * [SIZE * 2];
-		for (int i = 0; i < SIZE; i++) {
-			tmp[i] = table[i];
+	};
+
+	Cell* table;
+	int size;
+	int c;
+	int amount;
+	int d; //only for example
+
+	void insertToTable(Cell*& table, const K& key, V& velue) {
+		long long h = hash<K>()(key) % size;
+		if (table[h].status != USED) {
+			table[h].set(key, velue);
 		}
-		for (int i = SIZE; i < SIZE * 2; i++) {
-			tmp[i] = nullptr;
+		else {
+			int i = 0;
+			int hash_i = _hash(i, h);
+			while (table[hash_i].status == USED) {
+				i++;
+				hash_i = _hash(i, h);
+			}
+			table[hash_i].set(key, velue);
 		}
-		SIZE *= 2;
-		delete[] table;
-		table = tmp;
-	}*/
+	}
+
 	void resize() {
-		Node** tmp = new Node * [SIZE * 2];
-		for (int i = 0; i < SIZE * 2; i++) {
-			tmp[i] = nullptr;
-		}
-		for (int i = 0; i < SIZE; i++) {
-			if (table[i]) {
-				Node* temp = table[i];
-				while (temp) {
-					long long h = hash<K>()(temp->key);//temp->key.hash();
-					int hash = h % (SIZE * 2);
-					addToHead(tmp[hash], temp->key, temp->data);
-					temp = temp->next;
-				}
+		Cell* tmp = new Cell[size * 2];
+		int _size = size;
+		size *= 2;
+		for (int i = 0; i < _size; i++) {
+			if (table[i].status == USED) {
+				insertToTable(tmp, table[i].key, table[i].object);
 			}
 		}
-		SIZE *= 2;
 		delete[] table;
 		table = tmp;
 	}
+	int _hash(int i, long long h) {
+		return (h + i * c) % size;
+	}
+	int _hash_power2(int i, long long h) {
+		return (h + i * c + i * i * d) % size;
+	}
+	int _hash_power2_other(int i, long long h) {
+		return (h + (i * i * c * c)) % size;
+	}
+
 
 public:
-	MapLinear(int size) {
-		SIZE = size;
-		table = new Node * [size];
-		for (int i = 0; i < SIZE; i++) {
-			table[i] = nullptr;
+	Map(int _size, int _c) {
+		if (_c == 0) {
+			throw invalid_argument("c parameter must be not 0");
 		}
+		table = new Cell[_size];
+		size = _size;
+		c = _c;
 		amount = 0;
 	}
-	MapLinear() {
-		SIZE = 100;
-		table = new Node*[SIZE];
-		for (int i = 0; i < SIZE; i++) {
-			table[i] = nullptr;
-		}
+	Map() {
+		c = 1;
+		size = 11;
+		table = new Cell[size];
 		amount = 0;
 	}
-	~MapLinear() {
-		for (int i = 0; i < SIZE; i++) {
-			clear(table[i]);
-		}
+
+	~Map() {
 		delete[] table;
-	};
-	void insert(const K& key, const V& value) {
-		if (amount * 3 > SIZE * 2) {
+	}
+	void insert(const K& key, const V& elem) {
+		if (amount * 3 > size * 2) {
 			resize();
 		}
-		size_t h = hash<K>()(key);//key.hash();
-		int _hash = h % SIZE;
-		//cout << h << endl;
-		addToHead(table[_hash], key, value);
+		insertToTable(table, key, elem);
 		amount++;
 	}
-	V& operator[](K&& key) {
-		int _hash = hash<K>()(key) % SIZE;
-		if (table[_hash] == nullptr) {
-			cout << "new node" << endl;
-			table[_hash] = new Node(key, V());
-			return table[_hash]->data;
+	/*V& operator[](K& key) {
+		long long h = hash<K>()(key) % size;
+		if (table[h].status != USED) {
+			table[h].object;
 		}
 		else {
-			cout << "started search" << endl;
-			Node* searched = search_pos(table[_hash], key);
-			if (table[_hash]->key == key) {
-				return table[_hash]->data;
+			int i = 0;
+			int hash_i = _hash(i, h);
+			while (table[hash_i].status == USED) {
+				i++;
+				hash_i = _hash(i, h);
 			}
-			if (searched->next != nullptr) {
-				return searched->next->data;
-			}
-			else {
-				addToHead(table[_hash], key, V());
-				return table[_hash]->data;
-			}
+			table[hash_i].set(key, velue);
+		}
+	}*/
+	void remove(const K& key) {
+		int index = indexOf(key);
+		if (index != -1) {
+			table[index].clear();
+			amount--;
 		}
 	}
-	bool remove(const K& key) {
-		int _hash = hash<K>()(key) % SIZE;//key.hash() % SIZE;
-		if (!table[_hash]) {
-			return false;
-		}
-		else {
-			if (table[_hash]->key == key) {
-				deleteFromHead(table[_hash]);
-				amount--;
-				return true;
-			}
-			else {
-				Node* p = search_pos(table[_hash], key);
-				if (p->next != nullptr) {
-					deleteAfter(p);
-					amount--;
-					return true;
-				}
-				else {
-					return false;
+
+	int indexOf(const K& key) {
+		long long true_hash = hash<K>()(key);
+		long long hash = true_hash % size;
+		int i = 0;
+		int hash_i = hash;
+		while (table[hash_i].status != FREE) {
+			if (table[hash_i].status == USED) {
+				if (table[hash_i].key == key) {
+					return hash_i;
 				}
 			}
+			i++;
+			hash_i = hash(i, hash_i);
 		}
+		return -1;
 	}
 	bool search(const K& key) {
-		int _hash = hash<K>(key) % SIZE;//key.hash() % SIZE;
-		if (table[_hash] == nullptr) {
-			return false;
+		if (indexOF(key) != -1)
+		{
+			return true;
 		}
-		else {
-			if (table[_hash]->key == key) {
-				return true;
-			}
-			if (search_pos(table[_hash], key)->next != nullptr) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-	}
-	Node* search_pos(Node* head, const K& key) {
-		Node* cur = head;
-		while (cur->next != nullptr && cur->next->key != key) {
-			cur = cur->next;
-		}
-		return cur;
-	}
-	MapLinear(const MapLinear& other) = delete;
-	MapLinear& operator=(const MapLinear& other) = delete;
-
+		return false;
+	};
 	void print() {
-		for (int i = 0; i < SIZE; i++) {
-			print(table[i]);
+		cout << '{' << endl;
+		for (int i = 0; i < size; i++) {
+			cout << table[i].key << ' ' << table[i].object << endl;
 		}
-	}
-private:
-
-	void print(Node* head) {
-		if (head) {
-			Node* temp = head;
-			while (temp != nullptr) {
-				cout << temp->data << " ";
-				temp = temp->next;
-			}
-			cout << endl;
-		}
-	}
-	void addToHead(Node*& head, const K& key, const V& elem) {
-		Node* newEl = new Node(key, elem);
-		newEl->next = head;
-		head = newEl;
-		cout << head << endl;
-	}
-	void deleteFromHead(Node*& head) {
-		if (head) {
-			Node* temp = head;
-			head = head->next;
-			delete temp;
-			temp = nullptr;
-		}
-	}
-	void deleteAfter(Node* p) {
-		if (p) {
-			Node* temp = p->next;
-			p->next = temp->next;
-			delete temp;
-			temp = nullptr;
-		}
-	}
-
-	void clear(Node*& node) {
-		while (node) {
-			deleteFromHead(node);
-		}
+		cout << '}' << endl;
 	}
 };
