@@ -186,6 +186,6 @@ int main() {
 	//
 	//
 
-	Map<char, int> map;
-	map
+	MyMap<char, int> map;
+	
 }
