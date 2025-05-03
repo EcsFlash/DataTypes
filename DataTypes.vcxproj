@@ -139,6 +139,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapLinear.h" />
     <ClInclude Include="QueueArr.h" />
+    <ClInclude Include="SimpleGraph.h" />
     <ClInclude Include="StackList.h" />
     <ClInclude Include="Tree-formila.h" />
   </ItemGroup>

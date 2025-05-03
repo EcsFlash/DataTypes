@@ -14,7 +14,22 @@
 #include "AVLTree.h"
 #include "Map.h"
 #include "map"
+#include <vector>
+#include "SimpleGraph.h"
 int main() {
+	vector<vector<int>> k = vector<vector<int>>{
+		vector<int>{0,1,0,0,0},
+		vector<int>{1,0,1,1,0},
+		vector<int>{0,1,0,1,0},
+		vector<int>{0,1,1,0,1},
+		vector<int>{0,0,0,1,0},
+	};
+	SimpleGraph s(k);
+	s.print();
+	s.BFSI(3);
+	//s.DFSR(1);
+	//s.DFSR(2);
+	//cout << s.countPieces() << endl;
 	//ZOVZOVZOV
 	//
 	//map<char, int> smap;
@@ -186,6 +201,6 @@ int main() {
 	//
 	//
 
-	MyMap<char, int> map;
+	//MyMap<char, int> map;
 	
 }

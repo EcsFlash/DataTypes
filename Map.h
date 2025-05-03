@@ -247,23 +247,7 @@ public:
 		insertToTable(table, key, elem);
 		amount++;
 	}*/
-	V& operator[](K& key) {
-		long long h = hash<K>()(key) % size;
-		if (table[h]) {
-			table[h] = new Cell();
-			*table[h].key = key;
-			return *table[h].obj;
-		}
-		else {
-			int i = 0;
-			int hash_i = _hash(i, h);
-			while (table[hash_i].status == USED) {
-				i++;
-				hash_i = _hash(i, h);
-			}
-			table[hash_i].set(key, velue);
-		}
-	}
+	
 	/*void remove(const K& key) {
 		int index = indexOf(key);
 		if (index != -1) {
