@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,6 +143,7 @@
     <ClInclude Include="SimpleGraph.h" />
     <ClInclude Include="StackList.h" />
     <ClInclude Include="Tree-formila.h" />
+    <ClInclude Include="TSP.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryTree.h" />
@@ -150,6 +152,7 @@
     <ClCompile Include="example.cpp" />
     <ClCompile Include="FibTree.h" />
     <ClCompile Include="InfixToPostfix.cpp" />
+    <ClCompile Include="NotSimpleGraph.cpp" />
     <ClCompile Include="PerfectlyBalancedTree.h" />
     <ClCompile Include="QueueList.h" />
     <ClCompile Include="Source.cpp" />

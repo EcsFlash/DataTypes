@@ -16,17 +16,54 @@
 #include "map"
 #include <vector>
 #include "SimpleGraph.h"
+#include "NotSimpleGraph.cpp"
 int main() {
 	vector<vector<int>> k = vector<vector<int>>{
-		vector<int>{0,1,0,0,0},
-		vector<int>{1,0,1,1,0},
-		vector<int>{0,1,0,1,0},
-		vector<int>{0,1,1,0,1},
-		vector<int>{0,0,0,1,0},
+		vector<int>{0,15,14,10},
+		vector<int>{15,0,20,13},
+		vector<int>{14,20,0,16},
+		vector<int>{10,13,16,0},
 	};
 	SimpleGraph s(k);
-	s.print();
-	s.BFSI(3);
+	NotSimpleGraph gr;
+	//gr.AddEdge(1, 2, 15);
+	gr.AddEdge(2, 1, 15);
+
+	//gr.AddEdge(1, 3, 14);
+	gr.AddEdge(3, 1, 14);
+
+	//gr.AddEdge(1, 4, 10);
+	gr.AddEdge(4, 1, 10);
+
+	//gr.AddEdge(2, 4, 13);
+	gr.AddEdge(4, 2, 13);
+
+	//gr.AddEdge(3, 4, 16);
+	gr.AddEdge(4, 3, 16);
+
+	//gr.AddEdge(2, 3, 20);
+	gr.AddEdge(3, 2, 20);
+	//
+	// //
+	cout << gr.naiveTSP(1) << endl;
+	cout << gr.TSPJ(1) << endl;
+	/*gr.AddEdge(1, 2, 4);
+	gr.AddEdge(1, 3, 4);
+	gr.AddEdge(1, 6, 4);
+	gr.AddEdge(6, 2, 4);
+	gr.AddEdge(1, 4, 4);
+	gr.BFS(1);
+	gr.RemoveEdge(1, 2);
+	gr.RemoveEdge(6, 2);
+	gr.BFS(1);*/
+	//
+	//
+	// //
+	//s.print();//
+	// //
+	//s.BFSI(3);
+	cout << s.naiveTSP(1) << endl;
+	cout << s.tspJ(1) << endl;
 	//s.DFSR(1);
 	//s.DFSR(2);
 	//cout << s.countPieces() << endl;

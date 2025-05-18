@@ -88,10 +88,10 @@ public:
 				}
 			}
 		}
-		for (auto& i : wasIn) {
+		/*for (auto& i : wasIn) {
 			cout << i << "  ";
 		}
-		cout << endl;
+		cout << endl;*/
 		return wasIn;
 	}
 	void print()
@@ -118,5 +118,57 @@ public:
 			pieces.insert(p);
 		}
 		return pieces.size();
+	}
+	int naiveTSP(int start) {
+		start -= std_offset;
+		int sum = INT_MAX;
+		set<int> wasIn{ start };
+		for (int i = 0; i < kernel.size(); i++) {
+			if (i != start && kernel[start][i] != 0) {
+				int temp = ntsp(i, wasIn, start) + kernel[start][i];
+				if (temp < sum) {
+					sum = temp;
+				}
+			}
+		}
+		return sum;
+	}
+	int ntsp(int start, set<int> wasIn, int realStart) {
+		if ( kernel.size() - wasIn.size() == 1) {
+			return kernel[start][realStart];
+		}
+		wasIn.insert(start);
+		for (int i = 0; i < kernel.size(); i++) {
+			if (wasIn.count(i) == 0 && kernel[start][i] != 0) {
+				return ntsp(i, wasIn, realStart) + kernel[start][i];
+			}
+		}
+	}
+
+	int tspJ(int start) {
+		start -= std_offset;
+		set<int> wasIn{ start };
+		int curr_indx = 0;
+		int sum = 0;
+		while(wasIn.size() < kernel.size()){
+			int local_min = INT_MAX;
+			int local_min_indx = -1;
+			for (int j = 0; j < kernel.size(); j++) {
+				if (kernel[curr_indx][j] < local_min && wasIn.count(j) == 0 && curr_indx != j) {
+					local_min = kernel[curr_indx][j];
+					local_min_indx = j;
+				}
+			}
+			sum += local_min;
+			wasIn.insert(local_min_indx);
+			/*cout << "c_idx " << curr_indx <<  " idx " << local_min_indx << " : ";
+			for (int i : wasIn) {
+				cout << i << " ";
+			}
+			cout << endl;*/
+			curr_indx = local_min_indx;
+		}
+		sum += kernel[curr_indx][0];
+		return sum;
 	}
 };

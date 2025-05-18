@@ -60,6 +60,9 @@
     <ClInclude Include="SimpleGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TSP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="example.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NotSimpleGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
