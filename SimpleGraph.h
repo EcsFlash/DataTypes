@@ -124,7 +124,7 @@ public:
 		int sum = INT_MAX;
 		set<int> wasIn{ start };
 		for (int i = 0; i < kernel.size(); i++) {
-			if (i != start && kernel[start][i] != 0) {
+			if (kernel[start][i] != 0) {
 				int temp = ntsp(i, wasIn, start) + kernel[start][i];
 				if (temp < sum) {
 					sum = temp;
@@ -138,11 +138,16 @@ public:
 			return kernel[start][realStart];
 		}
 		wasIn.insert(start);
+		int sum = INT_MAX;
 		for (int i = 0; i < kernel.size(); i++) {
 			if (wasIn.count(i) == 0 && kernel[start][i] != 0) {
-				return ntsp(i, wasIn, realStart) + kernel[start][i];
+				int temp = ntsp(i, wasIn, realStart) + kernel[start][i];
+				if (temp < sum) {
+					sum = temp;
+				}
 			}
 		}
+		return sum;
 	}
 
 	int tspJ(int start) {

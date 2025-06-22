@@ -17,7 +17,119 @@
 #include <vector>
 #include "SimpleGraph.h"
 #include "NotSimpleGraph.cpp"
+#include "PArrQueue.h"
+#include "PTreeQueue.h"
+#include "HPQueue.h"
+#include "Heap.h"
+#include <cassert>
+#include "DisjointSets.h"
+
+
+int backpack(int index, int W, int w, int cost, int n, vector<pair<int,int>> arr) {
+	if (index == n) {
+		return cost;
+	}
+	if (w > W) {
+		return 0;
+	}
+	int c1 = 0;
+	if (w + arr[index].first < W) {
+		 c1 = backpack(index + 1, W, w + arr[index].first, cost + arr[index].second, n, arr);
+	}
+	int c2 = backpack(index + 1, W, w, cost, n, arr);
+	return max(c1, c2);
+}
+
+int appointmets(int index, int n, int** arr, bool* jobs, int cost) {
+	if (index == n) {
+		return cost;
+	}
+	int min_cost = INT_MAX;
+	for (int i = 0; i < n; i++) {
+		if (!jobs[i]) {
+			jobs[i] = true;
+			int c1 = appointmets(index + 1, n, arr, jobs, cost+arr[index][i]);
+			min_cost = min(min_cost, c1);
+			jobs[i] = false;
+		}
+	}
+	return min_cost;
+}
+
+
 int main() {
+	const int size = 10;
+	DSQuickFind ds(size);
+
+	// Создаем множества
+	for (int i = 0; i < size; ++i) {
+		ds.makeset(i);
+	}
+	
+	// Объединяем некоторые множества
+	ds.unionSets(0, 1);
+	ds.unionSets(2, 3);
+	ds.unionSets(2, 0);
+	ds.unionSets(2, 4);
+	ds.unionSets(1, 2);
+	ds.unionSets(5, 6);
+	ds.unionSets(7, 8);
+	ds.unionSets(8, 9);
+	//ds.find(1);
+	// Проверяем корректность объединений
+	assert(ds.find(0) == ds.find(1));
+	assert(ds.find(1) == ds.find(2));
+	assert(ds.find(2) == ds.find(3));
+	assert(ds.find(3) == ds.find(4));
+	assert(ds.find(5) == ds.find(6));
+	assert(ds.find(7) == ds.find(8));
+	assert(ds.find(8) == ds.find(9));
+	assert(ds.find(0) != ds.find(5));
+	assert(ds.find(2) != ds.find(7));
+
+	std::cout << "All tests passed!" << std::endl;
+
+	MaxHeap he;
+
+	he.fromArray(vector<int>{2,6,5,9,7,8,10});
+
+
+	PHQueue<int> z;
+
+	z.add(1, 3);
+	z.add(2, 7);
+	z.add(3, 5);
+	z.add(4, 8);
+	z.add(5, 9);
+	z.add(6, 10);
+	z.add(7, 11);
+	z.add(8, 10);
+	z.add(9, 14);
+	z.add(10, 10);
+	//cout << endl;cout << endl;cout << endl;
+	z.add(11, 6);
+	//////////
+	//
+	//
+
+	z.print();
+	cout << z.pop2() << endl;
+	cout << z.pop2() << endl;
+	cout << z.pop2() << endl;
+	z.print();
+	cout << endl;cout << endl;cout << endl;cout << endl;
+
+	PTreeQueue p;
+	p.Push(10, "Hellow10");
+	p.Push(20, "Hellow20");
+	p.Push(15, "Hellow15");
+	cout << p.Pop() << p.Pop() << p.Pop() << endl;
+	//PArrQueue q(3);
+	////
+	//q.Push(11, "Hello");
+	//q.Push(10, "world");
+	//q.Push(1, "from Yelez");
+	//cout << q.Pop() << q.Pop() << endl;
 	vector<vector<int>> k = vector<vector<int>>{
 		vector<int>{0,15,14,10},
 		vector<int>{15,0,20,13},
@@ -47,6 +159,12 @@ int main() {
 	// //
 	cout << gr.naiveTSP(1) << endl;
 	cout << gr.TSPJ(1) << endl;
+	gr.print();
+	cout << "FUCKING BFS:   ";
+	gr.fuckingBFS(1);
+	cout << "FUCKING DFS:   ";
+	//
+	gr.fuckingDFS(1);
 	/*gr.AddEdge(1, 2, 4);
 	gr.AddEdge(1, 3, 4);
 	gr.AddEdge(1, 6, 4);
@@ -62,7 +180,9 @@ int main() {
 	//s.print();//
 	// //
 	//s.BFSI(3);
-	cout << s.naiveTSP(1) << endl;
+
+	cout << "TSP STARTS HERE " << endl;
+	cout << s.ntsp(0, set<int>{}, 0) << endl;
 	cout << s.tspJ(1) << endl;
 	//s.DFSR(1);
 	//s.DFSR(2);

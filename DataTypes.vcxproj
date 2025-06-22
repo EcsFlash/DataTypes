@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -130,15 +130,19 @@
   <ItemGroup>
     <ClInclude Include="AVLTree.h" />
     <ClInclude Include="BSTree.h" />
+    <ClInclude Include="DisjointSets.h" />
     <ClInclude Include="DLList.h" />
     <ClInclude Include="DLListCircular.h" />
     <ClInclude Include="HashArr.h" />
     <ClInclude Include="HashList.h" />
+    <ClInclude Include="HPQueue.h" />
     <ClInclude Include="Item_for_hash.h" />
     <ClInclude Include="LList.h" />
     <ClInclude Include="LListWH.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapLinear.h" />
+    <ClInclude Include="PArrQueue.h" />
+    <ClInclude Include="PListQueue.h" />
     <ClInclude Include="QueueArr.h" />
     <ClInclude Include="SimpleGraph.h" />
     <ClInclude Include="StackList.h" />
@@ -151,9 +155,11 @@
     <ClCompile Include="Calculate_formula.cpp" />
     <ClCompile Include="example.cpp" />
     <ClCompile Include="FibTree.h" />
+    <ClCompile Include="Heap.h" />
     <ClCompile Include="InfixToPostfix.cpp" />
     <ClCompile Include="NotSimpleGraph.cpp" />
     <ClCompile Include="PerfectlyBalancedTree.h" />
+    <ClCompile Include="PTreeQueue.h" />
     <ClCompile Include="QueueList.h" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StackArr.h" />

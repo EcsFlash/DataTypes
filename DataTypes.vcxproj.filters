@@ -63,6 +63,18 @@
     <ClInclude Include="TSP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PArrQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PListQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HPQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DisjointSets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -97,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="NotSimpleGraph.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PTreeQueue.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Heap.h">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
