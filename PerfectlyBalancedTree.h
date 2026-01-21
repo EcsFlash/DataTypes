@@ -28,7 +28,18 @@ class PBTree {
 			
 		}
 	}
+	void createBalancedTree(Node*& node, int* arr, int start, int end) {
+	    if (start > end) {
+	        return nullptr;
+	    }
+	
+	    int mid = (start + end) / 2;
+	    node = new Node(arr[mid]);
+	
+	    createBalancedTree(node->left, arr, start, mid - 1);
+	    createBalancedTree(node->right, arr, mid + 1, end);
 
+	}
 	void print(Node* node) {
 		if (node) {
 			cout << node->data << " ";
